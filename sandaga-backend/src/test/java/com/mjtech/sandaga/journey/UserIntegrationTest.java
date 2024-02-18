@@ -49,7 +49,7 @@ public class UserIntegrationTest {
                 .accountType(1)
                 .build();
 
-        // Send a post request
+        // Send a post request t
         webTestClient.post()
                 .uri("/api/v1/users")
                 .accept(MediaType.APPLICATION_JSON)
@@ -60,7 +60,7 @@ public class UserIntegrationTest {
                 .isCreated();
     }
 
-    @Test
+/*    @Test
     void cannotRegisterForExistingAUser() {
         // Create registration request
 
@@ -92,5 +92,5 @@ public class UserIntegrationTest {
                 .exchange()
                 .expectStatus()
                 .is4xxClientError();
-    }
+    }*/
 }

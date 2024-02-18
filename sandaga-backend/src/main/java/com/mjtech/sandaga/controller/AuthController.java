@@ -46,7 +46,7 @@ public class AuthController  {
   }
 
 
-  @ApiOperation(value = "Provides new JWT based on valid refresh token.", nickname = "getAccessToken", notes = "Provides new JWT based on valid refresh token.", response = SignedInUserDto.class, tags={ "user", })
+  @ApiOperation(value = "Provides new JWT based on valid refresh token.", nickname = "getAccessToken", notes = "Provides new JWT based on valid refresh token.", response = SignedInUserDto.class, tags={ "user" })
   @ApiResponses(value = {
           @ApiResponse(code = 200, message = "For successful operation.", response = SignedInUserDto.class) })
   @PostMapping(
@@ -59,7 +59,7 @@ public class AuthController  {
   }
 
 
-  @ApiOperation(value = "Signin the customer (user)", nickname = "signIn", notes = "Signin the customer (user) that generates the JWT (access token) and refresh token, which can be used for accessing APIs.", response = SignedInUserDto.class, tags={ "user", })
+  @ApiOperation(value = "Signin the customer (user)", nickname = "signIn", notes = "Signin the customer (user) that generates the JWT (access token) and refresh token, which can be used for accessing APIs.", response = SignedInUserDto.class, tags={ "user" })
   @ApiResponses(value = {
           @ApiResponse(code = 200, message = "For user sign-in. Once successful, user receives the access and refresh token.", response = SignedInUserDto.class) })
   @PostMapping(
@@ -76,7 +76,7 @@ public class AuthController  {
     throw new InsufficientAuthenticationException("Unauthorized.");
   }
 
-  @ApiOperation(value = "Signouts the customer (user)", nickname = "signOut", notes = "Signouts the customer (user). It removes the refresh token from DB. Last issued JWT should be removed from client end that if not removed last for given expiration time.", tags={ "user", })
+  @ApiOperation(value = "Signouts the customer (user)", nickname = "signOut", notes = "Signouts the customer (user). It removes the refresh token from DB. Last issued JWT should be removed from client end that if not removed last for given expiration time.", tags={ "user" })
   @ApiResponses(value = {
           @ApiResponse(code = 202, message = "Accepts the request for logout.") })
   @DeleteMapping(
@@ -89,8 +89,7 @@ public class AuthController  {
   }
 
 
-  @ApiOperation(value = "Signup the a new user", nickname = "signUp", notes = "Creates a new user, who can login.", response = SignedInUserDto.class, tags={ "user", })
-  @ApiOperation(value = "Signup the a new user", nickname = "signUp", notes = "Creates a new user, who can login.", response = SignedInUserDto.class, tags={ "user", })
+  @ApiOperation(value = "Signup the a new user", nickname = "signUp", notes = "Creates a new user, who can login.", response = SignedInUserDto.class, tags={ "user" })
   @ApiResponses(value = {
   @ApiResponse(code = 201, message = "For successful user creation", response = SignedInUserDto.class) })
   @PostMapping(value = "/api/v1/users")
@@ -106,7 +105,7 @@ public class AuthController  {
 }
   }
 
-  @ApiOperation(value = "Token for verification new register user.", nickname = "verifyUserByToken", notes = "Token for verification new register user.", response = Object.class, tags={ "user", })
+  @ApiOperation(value = "Token for verification new register user.", nickname = "verifyUserByToken", notes = "Token for verification new register user.", response = Object.class, tags={ "user" })
   @ApiResponses(value = {
           @ApiResponse(code = 200, message = "For successful operation.", response = Object.class) })
   @GetMapping(
@@ -119,7 +118,7 @@ public class AuthController  {
   }
 
 
-  @ApiOperation(value = "Process email for user password forgot.", nickname = "forgotUserPassword", notes = "Process email for user password forgot.", response = Object.class, tags={ "user", })
+  @ApiOperation(value = "Process email for user password forgot.", nickname = "forgotUserPassword", notes = "Process email for user password forgot.", response = Object.class, tags={ "user" })
   @ApiResponses(value = {
           @ApiResponse(code = 200, message = "For successful operation.", response = Object.class) })
   @PostMapping(
@@ -138,7 +137,7 @@ service.createUserForgotPasswordResetToken(forgotPasswordUser.getEmail());}  cat
   }
 
 
-  @ApiOperation(value = "Reset user password.", nickname = "resetUserPassword", notes = "Reset user password.", response = Object.class, tags={ "user", })
+  @ApiOperation(value = "Reset user password.", nickname = "resetUserPassword", notes = "Reset user password.", response = Object.class, tags={ "user" })
   @ApiResponses(value = {
           @ApiResponse(code = 200, message = "For successful operation.", response = Object.class) })
   @PostMapping(

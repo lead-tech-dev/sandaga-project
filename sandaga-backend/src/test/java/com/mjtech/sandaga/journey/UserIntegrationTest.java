@@ -36,7 +36,7 @@ public class UserIntegrationTest {
 
         String firstname = fakername.firstName();
         String lastname = fakername.lastName();
-        String email = "ericmaximan@yahoo.com";
+        String email = fakername.lastName() + "@yahoo.com";
         String phone = faker.numerify("06########");
         String password = faker.internet().password();
 
@@ -70,7 +70,7 @@ public class UserIntegrationTest {
 
         String firstname = fakername.firstName();
         String lastname = fakername.lastName();
-        String email = "ericmaximan@yahoo.com";
+        String email = "elodie@yahoo.fr";
         String phone = faker.numerify("06########");
         String password = faker.internet().password();
 

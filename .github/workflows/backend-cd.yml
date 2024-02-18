@@ -42,7 +42,7 @@ jobs:
         id: build_number
         run: echo "BUILD_NUMBER=$(date '+%d.%m.%Y.%H.%M.%S')" >> $GITHUB_OUTPUT
       - name: Build package push with gradle
-        run: ./gradlew build -Dtag=${{steps.build_number.outputs.BUILD_NUMBER}} jib
+        run: ./gradlew build -Dargs=${{steps.build_number.outputs.BUILD_NUMBER}} jib
       - name: Update Dockerrun.aws.json api image tag with new build number
         run: |
           echo "Dockerrun.aws.json before updating tag"

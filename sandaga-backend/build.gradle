@@ -19,8 +19,9 @@ repositories {
     mavenCentral()
 }
 
+
 jib {
-    var version = "0.0.1-SNAPSHOT"
+    var tag = System.getProperty("args") ?: "0.0.1-SNAPSHOT"
 
     from {
         image = 'eclipse-temurin:17'
@@ -36,7 +37,7 @@ jib {
         }
     }
     to {
-        image = "docker.io/cartman81/${rootProject.name}:${version}"
+        image = "docker.io/cartman81/${rootProject.name}:${tag}"
         tags = ['latest']
 
         auth {

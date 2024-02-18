@@ -1,0 +1,424 @@
+// Search page
+.search-results {
+  padding-bottom: 0;
+
+  @include breakpoint-up("lg") {
+    padding-bottom: 20px;
+  }
+
+  .search-block {
+    position: relative;
+    padding: 20px 15px 20px;
+    border-radius: 5px;
+    background-color: #d4e4e5;
+
+    @include breakpoint-down("sm") {
+      margin-top: 20px;
+    }
+
+    .row {
+      @include breakpoint-up("up") {
+        margin-right: -10px;
+        margin-left: -10px;
+      }
+
+      [class*="col-"] {
+        @include breakpoint-up("up") {
+          padding-right: 10px;
+          padding-left: 10px;
+        }
+      }
+
+      .icon {
+        svg {
+          position: absolute;
+          top: 32px;
+          left: 27px;
+          height: 15px;
+          width: 15px;
+          margin-bottom: 3px;
+          margin-right: 10px;
+          margin-top: 3px;
+          z-index: 1;
+
+          path {
+            stroke-width: 4px;
+          }
+        }
+      }
+
+      .form-group {
+        .input-box {
+          margin-top: 0;
+
+          input {
+            border: 1px solid $grey-700;
+            padding: 1.2rem 1.2rem 1.2rem 3rem;
+          }
+        }
+
+        .select {
+          button {
+            padding: 1.2rem;
+            border: 1px solid $grey-700;
+          }
+        }
+      }
+    }
+
+    .btn-advance-search {
+      font-weight: 600;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-top: 10px;
+      margin-bottom: 25px;
+
+      &[aria-expanded="false"] {
+        span {
+          &:first-child {
+            display: none;
+          }
+        }
+      }
+
+      &[aria-expanded="true"] {
+        span {
+          &:last-child {
+            display: none;
+          }
+        }
+      }
+
+      &:hover {
+        color: $primary-regular;
+      }
+    }
+
+    &.display-block {
+      position: relative;
+      background-color: $primary-regular;
+      margin-top: 40px;
+      margin-bottom: -40px;
+
+      &::after {
+        content: "";
+        position: absolute;
+        width: 1024px;
+        height: 100%;
+        background-color: $primary-regular;
+        display: block;
+        top: 0;
+        left: 50%;
+        -webkit-transform: translate(-50%, 0);
+        transform: translate(-50%, 0);
+
+        @include breakpoint-up("lg") {
+          display: none;
+        }
+      }
+
+      .row {
+        position: relative;
+        z-index: 1;
+      }
+    }
+
+    ul {
+      &.display-opts {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+
+        li {
+          display: inline-block;
+          padding: 0 8px;
+          line-height: 38px;
+
+          @include breakpoint-up("lg") {
+            padding: 0 5px;
+          }
+
+          a {
+            font-size: 24px;
+            color: #fff;
+
+            @include breakpoint-up("lg") {
+              font-size: 28px;
+              color: $primary-regular;
+            }
+          }
+        }
+      }
+    }
+    .more-filter-inner {
+      height: 100%;
+    }
+    .more-filter {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      height: 100%;
+      column-gap: 25px;
+
+      button {
+        padding: 1.2rem;
+        border: 1px solid $grey-700;
+
+        @include breakpoint-down("xs"){
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+}
+
+.filter-menu.active .filter-overlay {
+  visibility: visible;
+
+  height: 100vh;
+  opacity: 1;
+  left: 0;
+  -webkit-transition: all 0.3s ease-out 0s;
+  -o-transition: all 0.3s ease-out 0s;
+  transition: all 0.3s ease-out 0s;
+}
+.filter-menu.active .filter-wrapper {
+  right: 0;
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: all 0.2s cubic-bezier(0.9, 0.03, 0, 0.96) 0.4s;
+  -o-transition: all 0.2s cubic-bezier(0.9, 0.03, 0, 0.96) 0.4s;
+  transition: all 0.2s cubic-bezier(0.9, 0.03, 0, 0.96) 0.4s;
+}
+
+.filter-overlay {
+  position: fixed;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  visibility: hidden;
+  opacity: 0;
+  cursor: pointer;
+  -webkit-transition: all 0.4s ease-in 0.8s;
+  -o-transition: all 0.4s ease-in 0.8s;
+  transition: all 0.4s ease-in 0.8s;
+}
+
+.filter-wrapper {
+  position: fixed;
+  overflow-y: auto;
+  top: 0;
+  right: -100%;
+  width: 480px;
+  padding: 25px 20px;
+  height: 100%;
+  display: block;
+  background-color: $white;
+  z-index: 9999;
+  -webkit-transition: all 0.5s cubic-bezier(0.9, 0.03, 0, 0.96) 0.6s;
+  -o-transition: all 0.5s cubic-bezier(0.9, 0.03, 0, 0.96) 0.6s;
+  transition: all 0.5s cubic-bezier(0.9, 0.03, 0, 0.96) 0.6s;
+
+  @include breakpoint-down("sm") {
+    width: 310px;
+  }
+
+  .filter-header-area {
+    position: absolute;
+    z-index: 9;
+    top: 0;
+    left: 0;
+
+    width: calc(100% - 0px);
+    //margin-left: 60px;
+    padding: 20px 15px;
+
+    background-color: $grey-500;
+
+    h3 {
+      font-weight: $fw-500;
+      font-size: 1.7rem;
+    }
+
+    .sub-categorie-header {
+      h3 {
+        text-align: center;
+      }
+    }
+  }
+
+  .filter-inner-content {
+    margin-top: 38px;
+    min-height: 78%;
+
+    .filter-container {
+      padding: 20px 0 15px 0;
+      border-bottom: 1.4px solid $grey-500;
+      font-weight: $fw-400;
+
+      .header {
+        margin-bottom: 10px;
+
+        span {
+          font-size: $fs-16;
+        }
+
+        .title {
+          // display: block;
+          //margin-left: 10px;
+          margin-bottom: 15px;
+          display: inline-block;
+          font-weight: $fw-500;
+        }
+
+        .subtitle {
+          color: rgb(129, 145, 160);
+          //margin-top: 7px;
+          span {
+            font-size: 12px;
+            line-height: $lh-15;
+            // text-transform: lowercase;
+          }
+        }
+
+        svg {
+          height: 20px;
+          width: 20px;
+          line-height: 15px;
+          border-radius: 50%;
+          padding: 3px;
+          margin-top: -4px;
+          margin-right: 10px;
+          background-color: rgba(129, 145, 160, 0.2);
+        }
+      }
+
+      .btn-filter {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        text-decoration: none;
+        color: $secondary-regular;
+
+        svg {
+          height: 15px;
+          width: 15px;
+
+          path {
+            fill: $grey-900;
+          }
+        }
+
+        span {
+          color: rgb(129, 145, 160);
+
+          &.custom {
+            color: $dark;
+            font-weight: $fw-500;
+          }
+        }
+      }
+
+      .filter-form {
+        //margin-left: 8px;
+
+        .form-group {
+          margin-bottom: 10px;
+          border: none;
+        }
+
+        .btn-inner {
+          width: 11%;
+          .btn {
+            padding: 8px 14px;
+          }
+        }
+      }
+
+      .form-group {
+        border: none;
+
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .filter-footer-area {
+    position: sticky;
+    bottom: -25px;
+    right: 0;
+    width: 100%;
+    height: 13%;
+    background-color: $white;
+
+    .filter-footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid $grey-500;
+      padding-top: 15px;
+    }
+  }
+}
+
+.filter-wrapper {
+  .filter-menu-close,
+  .filter-menu-back {
+    position: absolute;
+    color: #fff;
+    z-index: 9999;
+    font-size: 16px;
+    right: 10px;
+    top: 15px;
+    background: $primary-regular;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      font-size: 30px;
+      line-height: 1;
+
+      margin-top: -4px;
+
+      transition: 0.3s;
+      transform: rotate(0);
+
+      path {
+        fill: $white;
+      }
+    }
+
+    &:hover {
+      background: $secondary-regular;
+    }
+  }
+
+  .filter-menu-close {
+    right: 10px;
+
+    &:hover {
+      svg {
+        transform: rotate(-90deg);
+      }
+    }
+  }
+  .filter-menu-back {
+    left: 10px;
+  }
+
+  &.open {
+    .filter-container {
+      border-bottom: none;
+    }
+  }
+}
+
+// search input

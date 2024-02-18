@@ -1,0 +1,23 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "sandaga-api",
+      "image": "cartman81/sandaga-api:latest",
+      "essential": true,
+      "memory": 512,
+      "environment": [
+        {
+          "name": "SPRING_DATASOURCE_URL",
+          "value": "jdbc:postgresql://awseb-e-gbehrmu7mx-stack-awsebrdsdatabase-dcikv90zrzma.cr2ie0g80l1v.eu-west-3.rds.amazonaws.com:5432/sandagadb"
+        }
+      ],
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 8080
+        }
+      ]
+    }
+  ]
+}

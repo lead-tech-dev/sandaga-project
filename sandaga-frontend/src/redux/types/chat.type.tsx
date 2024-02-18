@@ -1,0 +1,5 @@
+export const ChatActionTypes = {
+    MESSAGE_REQUEST: "MESSAGE_REQUEST",
+    MESSAGE_SUCCESS: "MESSAGE_SUCCESS",
+    MESSAGE_ERROR: "MESSAGE_ERROR"
+} as const;

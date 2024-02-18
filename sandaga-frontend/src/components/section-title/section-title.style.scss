@@ -1,0 +1,112 @@
+@import "../../assets/scss/foundation/variables";
+@import "../../assets/scss/foundation/mixins";
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  &.mb-40 {
+    margin-bottom: 40px;
+  }
+
+  &.mb-55 {
+    margin-bottom: 20px;
+  }
+
+  @include breakpoint-down("sm") {
+   flex-direction: column;
+    &.d-row {
+      flex-direction: row;
+    }
+  }
+  @include breakpoint-down("md") {
+    &.mb-50 {
+      margin-bottom: 30px;
+    }
+  }
+  h2 {
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 2.6rem;
+    color: var(--dss-headings-color);
+
+    position: relative;
+
+    display: inline-block;
+
+    margin: 0 0 0;
+
+    @include breakpoint-down("md") {
+      font-size: 24px;
+      line-height: 30px;
+      &.mb-50 {
+        margin-bottom: 30px;
+      }
+    }
+
+
+    @include breakpoint-down("sm") {
+      font-size: 20px;
+      line-height: 20px;
+      &.mb-50 {
+        margin-bottom: 40px;
+      }
+    }
+    /*&::after {
+      content: "";
+
+      display: block;
+      width: 90px;
+      margin: 0 auto;
+      margin-top: 5px;
+      border-top: 1px solid $primary-regular;
+
+      @include breakpoint-up("lg") {
+        width: 90px;
+        margin-top: 10px;
+      }
+    }*/
+  }
+  &.mb-55 {
+    @include breakpoint-down("md") {
+      margin-bottom: 30px;
+    }
+  }
+
+  &.ml-20 {
+    margin-left: 20px;
+
+    @include breakpoint-down("sm") {
+      margin-left: 0;
+      text-align: center;
+    }
+  }
+
+  p {
+    font-size: 1.2rem;
+    font-weight: 400;
+
+    margin-top: 4px;
+    margin-bottom: 0;
+
+    &.grey {
+      color: #808080;
+    }
+  }
+
+  &.no-border {
+    h2 {
+      font-size: 36px;
+      &:before,
+      &:after {
+        display: none;
+      }
+    }
+  }
+
+  svg {
+    height: 20px;
+    width: 20px;
+  }
+}

@@ -1,0 +1,126 @@
+// .wrapper {
+//   text-align: center;
+//   background-color: $white;
+
+//   .auth-container {
+//     padding: 40px 60px 0;
+
+//     @include breakpoint-up("md") {
+//       padding: 40px 30px 0;
+//     }
+
+//     .heading {
+//       margin-bottom: 10px;
+//       font-size: 21px;
+//       font-weight: $fw-700;
+//       color: $primary-regular;
+//     }
+
+//     .sub-heading {
+//       margin-bottom: 30px;
+//       font-size: 15px;
+//       font-weight: $fw-400;
+//       color: #77798c;
+//       display: block;
+//     }
+//   }
+// }
+.authentication {
+  .form-group {
+    margin-bottom: 50px;
+    border: none;
+
+    @include breakpoint-up("lg") {
+      margin-bottom: 50px;
+    }
+
+    input {
+      + {
+        p {
+          padding-top: 5px;
+        }
+      }
+    }
+  }
+
+  .sign-in-with {
+    margin-top: -15px;
+
+    @include breakpoint-up("lg") {
+      margin-top: -40px;
+    }
+  }
+
+  a {
+    &:not(.btn) {
+      color: $secondary-regular;
+    }
+    text-decoration: none;
+
+    &.btn-google,
+    &.btn-linkedin,
+    &.btn-twitter,
+    &.btn-facebook {
+      text-transform: uppercase;
+      min-width: 100%;
+      margin-top: 15px;
+
+      @include breakpoint-up("lg") {
+        margin-top: 40px;
+      }
+    }
+  }
+
+  .btn {
+    + {
+      p {
+        padding-top: 15px;
+
+        @include breakpoint-up("lg") {
+          padding-top: 30px;
+        }
+      }
+    }
+  }
+
+  input[type="checkbox"] + label {
+    margin: 0;
+    padding: 2px 0 2px 20px;
+    white-space: nowrap;
+
+    @include breakpoint-up("md") {
+      margin: 0;
+    }
+  }
+
+  .g-recaptcha {
+    display: inline-block;
+    margin: 0 auto 15px 0 !important;
+
+    @include breakpoint-up("lg") {
+      margin-bottom: 40px !important;
+    }
+  }
+
+  .global-error {
+    text-align: center;
+    margin-bottom: 40px;
+    color: $secondary-regular;
+  }
+
+  .checkbox {
+    margin-right: 10px;
+  }
+
+  svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 5px;
+    border: none;
+    margin-left: 8px;
+
+    path {
+      fill: $secondary-regular;
+    }
+  }
+}

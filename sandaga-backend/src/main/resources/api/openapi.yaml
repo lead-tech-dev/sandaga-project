@@ -1,0 +1,1273 @@
+openapi: 3.0.3
+info:
+  title: Sandaga App
+  description: >
+    'This is a ***Sandaga app API***.'
+  termsOfService: https://github.com/maximan81/sandaga-backend/blob/master/LICENSE
+  contact:
+    email: info@sandaga.com
+  license:
+    name: MIT
+    url: https://github.com/maximan81/sandaga-backend/blob/master/LICENSE
+  version: 1.0.0
+externalDocs:
+  description: Any document link you want to generate along with API.
+  url: http://swagger.io
+servers:
+  - url: https://sandaga.swagger.io/v2
+tags:
+  - name: user
+    description: Operations about signup, signin and so on
+  - name: categories
+    description: Operations about categories
+  - name: subcategories
+    description: Operations about subcategories
+  - name: ads
+    description: Operations about ads
+  - name: address
+    description: Operations about address
+  - name: images
+    description: Operations about images
+  - name: points
+    description: Operations about points
+
+paths:
+  /api/v1/users:
+    post:
+      tags:
+        - user
+      summary: Signup the a new customer (user)
+      description: Creates a new customer (user), who can login and do the shopping.
+      operationId: signUp
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        201:
+          description: For successful user creation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignedInUser'
+  /api/v1/auth/token:
+    post:
+      tags:
+        - user
+      summary: Signin the customer (user)
+      description: Signin the customer (user) that generates the JWT (access token) and refresh token, which can be used for accessing APIs.
+      operationId: signIn
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignInReq'
+      responses:
+        200:
+          description: For user sign-in. Once successful, user receives the access and refresh token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignedInUser'
+    delete:
+      tags:
+        - user
+      summary: Signouts the customer (user)
+      description: Signouts the customer (user). It removes the refresh token from DB. Last issued JWT should be removed from client end that if not removed last for given expiration time.
+      operationId: signOut
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshToken'
+      responses:
+        202:
+          description: Accepts the request for logout.
+  /api/v1/auth/token/refresh:
+    post:
+      tags:
+        - user
+      summary: Provides new JWT based on valid refresh token.
+      description: Provides new JWT based on valid refresh token.
+      operationId: getAccessToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshToken'
+      responses:
+        200:
+          description: For successful operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignedInUser'
+  /api/v1/auth/token/verify/{code}:
+    get:
+      tags:
+        - user
+      summary: Token for verification new register user.
+      description: Token for verification new register user.
+      operationId: verifyUserByToken
+      parameters:
+        - name: code
+          in: path
+          description: Token for verification
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: For successful operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEntity'
+  /api/v1/auth/forgot-password:
+    post:
+      tags:
+        - user
+      summary: Process email for user password forgot.
+      description: Process email for user password forgot.
+      operationId: forgotUserPassword
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForgotPasswordUser'
+      responses:
+        200:
+          description: For successful operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEntity'
+  /api/v1/auth/reset-password:
+    post:
+      tags:
+        - user
+      summary: Reset user password.
+      description: Reset user password.
+      operationId: resetUserPassword
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordUser'
+      responses:
+        200:
+          description: For successful operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyEntity'
+  /api/v1/categories:
+    get:
+      tags:
+        - categories
+      summary: Returns all the matched categories
+      description: Returns the categories that matches the given query criteria
+      operationId: queryCategories
+      responses:
+        200:
+          description: For successful fetch.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+    post:
+      tags:
+        - categories
+      summary: Add a new category
+      description: Creates a new category
+      operationId: addCategory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddCategoryReq'
+      responses:
+        201:
+          description: For successful user creation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+  /api/v1/categories/{id}:
+    get:
+      tags:
+        - categories
+      summary: Returns a category
+      description: Returns the category that matches the given category ID
+      operationId: getCategory
+      parameters:
+        - name: id
+          in: path
+          description: Category Identifier
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: For successful fetch.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+    delete:
+      tags:
+        - categories
+      summary: Deletes category
+      description: Deletes category based on given card ID.
+      operationId: deleteCategoryById
+      parameters:
+        - name: id
+          in: path
+          description: category Identifier
+          required: true
+          schema:
+            type: string
+      responses:
+        202:
+          description: Accepts the deletion request and perform deletion. If ID does not exist, does nothing.
+          content: { }
+    put:
+      tags:
+        - categories
+      summary: Replace a category
+      description: Replace a category with given id.
+      operationId: replaceCategoryById
+      parameters:
+        - name: id
+          in: path
+          description: category Identifier
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Category object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Category'
+      responses:
+        204:
+          description: Category update successfully
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Category'
+        404:
+          description: Given category ID doesn't exist
+          content: { }
+  /api/v1/subcategories:
+    get:
+      tags:
+        - subcategories
+      summary: Returns all the matched subcategories
+      description: Returns the subcategories that matches the given query criteria
+      operationId: querySubcategories
+      responses:
+        200:
+          description: For successful fetch.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subcategory'
+    post:
+      tags:
+        - subcategories
+      summary: Add a new subcategory
+      description: Creates a new subcategory
+      operationId: addSubcategory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddSubcategoryReq'
+      responses:
+        201:
+          description: For successful user creation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subcategory'
+  /api/v1/subcategories/{id}:
+    get:
+      tags:
+        - subcategories
+      summary: Returns a subcategory
+      description: Returns the subcategory that matches the given subcategory ID
+      operationId: getSubCategory
+      parameters:
+        - name: id
+          in: path
+          description: Subcategory Identifier
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: For successful fetch.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subcategory'
+    delete:
+      tags:
+        - subcategories
+      summary: Deletes subcategory
+      description: Deletes subcategory based on given card ID.
+      operationId: deleteSubcategoryById
+      parameters:
+        - name: id
+          in: path
+          description: subcategory Identifier
+          required: true
+          schema:
+            type: string
+      responses:
+        202:
+          description: Accepts the deletion request and perform deletion. If ID does not exist, does nothing.
+          content: { }
+    put:
+      tags:
+        - subcategories
+      summary: Replace a subcategory
+      description: Replace a subcategory with given id.
+      operationId: replaceSubcategoryById
+      parameters:
+        - name: id
+          in: path
+          description: subcategory Identifier
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Subcategory object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subcategory'
+      responses:
+        204:
+          description: Subcategory update successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subcategory'
+        404:
+          description: Given subcategory ID doesn't exist
+          content: { }
+  /api/v1/ads:
+    get:
+      tags:
+        - ads
+      summary: Returns all ads
+      description: Returns all ads, else empty collection
+      operationId: getAllAds
+      responses:
+        200:
+          description: For successful fetch.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ads'
+    post:
+      tags:
+        - ads
+      summary: Add a new ads
+      description: Creates a new ads
+      operationId: addAds
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdsReq'
+      responses:
+        201:
+          description: For successful user creation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ads'
+  /api/v1/ads/{id}:
+    get:
+      tags:
+        - ads
+      summary: Returns an ads
+      description: Returns ads based on given ads ID.
+      operationId: getAdsById
+      parameters:
+        - name: id
+          in: path
+          description: ads Identifier
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: For successful fetch.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ads'
+    patch:
+      tags:
+        - ads
+      summary: Replace a ads
+      description: Replace a ads with given id.
+      operationId: replacePartialAdsById
+      parameters:
+        - name: id
+          in: path
+          description: ads Identifier
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Ads object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ads'
+      responses:
+        204:
+          description: Ads update successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ads'
+        404:
+          description: Given category ID doesn't exist
+          content: { }
+    put:
+      tags:
+        - ads
+      summary: Replace a ads
+      description: Replace a ads with given id.
+      operationId: replaceAdsById
+      parameters:
+        - name: id
+          in: path
+          description: ads Identifier
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Ads object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ads'
+      responses:
+        204:
+          description: Ads update successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ads'
+        404:
+          description: Given category ID doesn't exist
+          content: { }
+    delete:
+      tags:
+        - ads
+      summary: Deletes ads
+      description: Deletes ads based on given ads ID.
+      operationId: deleteAdsById
+      parameters:
+        - name: id
+          in: path
+          description: ads Identifier
+          required: true
+          schema:
+            type: string
+      responses:
+        202:
+          description: Accepts the deletion request and perform deletion. If ID does not exist, does nothing.
+          content: { }
+  /adv/{id}:
+    get:
+      tags:
+        - ads
+      summary: Returns an public ad
+      description: Returns public ad based on given ad ID.
+      operationId: getPublicAdsById
+      parameters:
+        - name: id
+          in: path
+          description: ad Identifier
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: For successful fetch.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ads'
+  /adv/{id}/users:
+    get:
+      tags:
+        - user
+      summary: Returns all user's ads
+      description: Returns all user's ads based on given user ID
+      operationId: getAdsByUserId
+      parameters:
+        - name: id
+          in: path
+          description: User Identifier
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: For successful fetch.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AdsPublicRes'
+  /api/v1/addresses:
+    get:
+      tags:
+        - address
+      summary: Returns all addresses
+      description: Returns all  addresses, else empty collection
+      operationId: getAllAddresses
+      responses:
+        200:
+          description: For successful fetch.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Address'
+    post:
+      tags:
+        - address
+      summary: Creates a new user addresses
+      description: Creates a new user addresses. Does nothing if address already exists.
+      operationId: createAddress
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddAddressReq'
+      responses:
+        200:
+          description: For successful fetch.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+  /api/v1/addresses/{id}:
+    get:
+      tags:
+        - address
+      summary: Returns an address
+      description: Returns an address based on given address ID.
+      operationId: getAddressesById
+      parameters:
+        - name: id
+          in: path
+          description: address Identifier
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: For successful fetch.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+    put:
+      tags:
+        - address
+      summary: Replace a Address
+      description: Replace an address with given id.
+      operationId: replaceAddressById
+      parameters:
+        - name: id
+          in: path
+          description: address Identifier
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Address object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddAddressReq'
+      responses:
+        204:
+          description: Address update successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+        404:
+          description: Given address ID doesn't exist
+          content: { }
+    delete:
+      tags:
+        - address
+      summary: Deletes an address
+      description: Deletes an address based on given address ID.
+      operationId: deleteAddressesById
+      parameters:
+        - name: id
+          in: path
+          description: address Identifier
+          required: true
+          schema:
+            type: string
+      responses:
+        202:
+          description: Accepts the deletion request and perform deletion. If ID does not exist, does nothing.
+          content: { }
+  /api/v1/images/{id}:
+    delete:
+      tags:
+        - images
+      summary: Deletes an image
+      description: Deletes an image based on given image ID.
+      operationId: deleteImageById
+      parameters:
+        - name: id
+          in: path
+          description: address Identifier
+          required: true
+          schema:
+            type: string
+      responses:
+        202:
+          description: Accepts the deletion request and perform deletion. If ID does not exist, does nothing.
+          content: { }
+  /images/{fileName}:
+    get:
+      tags:
+        - images
+      summary: Returns an image
+      description: Returns image based on given image fileName
+      operationId: getImageByFileName
+      parameters:
+        - name: fileName
+          in: path
+          description: Image Identifier
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: For successful fetch.
+          content:
+            application/json:
+              schema:
+                  type: string
+                  format: byte
+  /api/v1/images:
+    get:
+      tags:
+        - images
+      summary: Returns all images
+      description: Returns all images, else empty collection
+      operationId: getAllImages
+      responses:
+        200:
+          description: For successful fetch.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Image'
+    post:
+      tags:
+        - images
+      summary: Add a new image
+      description: Creates a new image
+      operationId: addImage
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ImageReq'
+      responses:
+        201:
+          description: For successful user creation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Image'
+  /api/v1/points:
+    get:
+      tags:
+        - points
+      summary: Returns all points
+      description: Returns all points, else empty collection
+      operationId: getAllPoints
+      responses:
+        200:
+          description: For successful fetch.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Point'
+    post:
+      tags:
+        - points
+      summary: Add a new point
+      description: Creates a new point
+      operationId: addPoint
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PointReq'
+      responses:
+        201:
+          description: For successful user creation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Point'
+  /api/v1/points/{id}:
+    get:
+      tags:
+        - points
+      summary: Returns an point
+      description: Returns point based on given point ID
+      operationId: getPointById
+      parameters:
+        - name: id
+          in: path
+          description: Point Identifier
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: For successful fetch.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Point'
+    put:
+      tags:
+        - points
+      summary: Replace a Point
+      description: Replace an point with given id.
+      operationId: replacePointById
+      parameters:
+        - name: id
+          in: path
+          description: point Identifier
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Point object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Point'
+      responses:
+        204:
+          description: Point update successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Point'
+        404:
+          description: Given point ID doesn't exist
+          content: { }
+    delete:
+      tags:
+        - points
+      summary: Deletes an point
+      description: Deletes an point based on given point ID.
+      operationId: deletePointById
+      parameters:
+        - name: id
+          in: path
+          description: point Identifier
+          required: true
+          schema:
+            type: string
+      responses:
+        202:
+          description: Accepts the deletion request and perform deletion. If ID does not exist, does nothing.
+          content: { }
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        phone:
+          type: string
+        userStatus:
+          type: string
+        addressId:
+          type: string
+        accountType:
+          type: integer
+          format: int32
+        createdAt:
+          type: string
+          format: date-time
+      xml:
+        name: User
+    VerifyToken:
+      description: Contains the verify token
+      type: object
+      properties:
+        verifyToken:
+          description: Verify Token
+          type: string
+    URI:
+      type: object
+      xml:
+        name: URI
+    SignInReq:
+      description: Request body for Sign-in
+      type: object
+      properties:
+        email:
+          description: email of the User
+          type: string
+        password:
+          description: password of the User
+          type: string
+    SignedInUser:
+      description: Signed-in user information
+      type: object
+      properties:
+        refreshToken:
+          description: Refresh Token
+          type: string
+        accessToken:
+          description: JWT Token aka access token
+          type: string
+        firstname:
+          description: User firstname
+          type: string
+        lastname:
+          description: User lastname
+          type: string
+        email:
+          description: User email
+          type: string
+        role:
+          description: User role
+          type: string
+        userId:
+          description: User Identifier
+          type: string
+        accountType:
+          type: integer
+          format: int32
+        createdAt:
+          type: string
+          format: date-time
+    RefreshToken:
+      description: Contains the refresh token
+      type: object
+      properties:
+        refreshToken:
+          description: Refresh Token
+          type: string
+    ForgotPasswordUser:
+      description: Forgot password user information
+      type: object
+      properties:
+        email:
+          description: User email
+          type: string
+    ResetPasswordUser:
+      description: Reset password user information
+      type: object
+      properties:
+        token:
+          description: Reset password token
+          type: string
+        password:
+          description: User new password
+          type: string
+    Category:
+      type: object
+      properties:
+        id:
+          type: string
+        label:
+          type: string
+        name:
+          type: string
+        channel:
+          type: string
+        subcategories:
+            type: array
+            items:
+              $ref: '#/components/schemas/Subcategory'
+      xml:
+        name: Category
+    AddCategoryReq:
+      description: Request body for category
+      type: object
+      properties:
+        label:
+          description: label of the Category
+          type: string
+        name:
+          description: name of the Category
+          type: string
+        channel:
+          description: channel of the Category
+          type: string
+    Subcategory:
+      type: object
+      properties:
+        id:
+          type: string
+        label:
+          type: string
+        name:
+          type: string
+        channel:
+          type: string
+      xml:
+        name: Subcategory
+    AddSubcategoryReq:
+      description: Request body for subcategory
+      type: object
+      properties:
+        label:
+          description: label of the Subcategory
+          type: string
+        name:
+          description: name of the Subcategory
+          type: string
+        channel:
+          description: channel of the Subcategory
+          type: string
+        category_id:
+          description: category id of the Category
+          type: string
+    Ads:
+      type: object
+      properties:
+        id:
+          type: string
+        ad_type:
+          type: string
+        subject:
+          type: string
+        type:
+          type: string
+        body:
+          type: string
+        donation:
+          type: boolean
+        price_cents:
+          type: integer
+          format: int32
+        price_reco:
+          type: integer
+          format: int32
+        shipping_type:
+          type: string
+        shipping_cost:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        phone_hidden_information_text:
+          type: boolean
+        item_condition:
+          type: string
+        video_game_type:
+          type: string
+        console_model:
+          type: string
+        console_brand:
+          type: string
+        image_sound_type_of_product:
+          type: string
+        image_sound_product:
+          type: string
+        phone_brand:
+          type: string
+        phone_color:
+          type: string
+        phone_model:
+          type: string
+        phone_memory:
+          type: string
+        furniture_type:
+          type: string
+        furniture_material:
+          type: string
+        furniture_color:
+          type: string
+        home_appliance_type:
+          type: string
+        home_appliance_product:
+          type: string
+        home_appliance_brand:
+          type: string
+        table_art_product:
+          type: string
+        table_art_material:
+          type: string
+        decoration_type:
+          type: string
+        linens_type:
+          type: string
+        linens_product:
+          type: string
+        linens_material:
+          type: string
+        diy_type:
+          type: string
+        diy_product:
+          type: string
+        gardering_type:
+          type: string
+        gardering_product:
+          type: string
+        clothing_type:
+          type: string
+        clothing_st:
+          type: string
+        clothing_category:
+          type: string
+        clothing_brand:
+          type: string
+        clothing_color:
+          type: string
+        clothing_condition:
+          type: string
+        shoe_type:
+          type: string
+        shoe_category:
+          type: string
+        shoe_size:
+          type: string
+        shoe_brand:
+          type: string
+        accessories_univers:
+          type: string
+        accessories_type:
+          type: string
+        accessories_brand:
+          type: string
+        accessories_material:
+          type: string
+        watches_jewels_brand:
+          type: string
+        watches_jewels_type:
+          type: string
+        watches_jewels_material:
+          type: string
+        baby_equipment_type:
+          type: string
+        baby_equipment_brand:
+          type: string
+        baby_clothing_category:
+          type: string
+        baby_clothing_brand:
+          type: string
+        baby_age:
+          type: string
+        bicycle_type:
+          type: string
+        bicycle_size:
+          type: string
+        bicycode:
+          type: string
+        sports_hobbies_activity:
+          type: string
+        toy_age:
+          type: string
+        toy_type:
+          type: string
+        matpro_agriculture_equipment_type:
+          type: string
+        regdate:
+          type: string
+      xml:
+        name: Ads
+    AdsReq:
+      allOf:
+        - $ref: '#/components/schemas/Ads'
+        - type: object
+          properties:
+            userId:
+              type: string
+            categoryId:
+              type: string
+            addressId:
+              type: string
+
+      xml:
+        name: AddAddressReq
+    AdsRes:
+      allOf:
+        - $ref: "#/components/schemas/Ads"
+        - type: object
+          properties:
+            category:
+              $ref: '#/components/schemas/Subcategory'
+            user:
+              $ref: '#/components/schemas/User'
+            address:
+              $ref: '#/components/schemas/Address'
+            images:
+              type: array
+              items:
+                $ref: '#/components/schemas/Image'
+    AdsPublicRes:
+      allOf:
+        - $ref: "#/components/schemas/Ads"
+        - type: object
+          properties:
+            category:
+              $ref: '#/components/schemas/Subcategory'
+            address:
+              $ref: '#/components/schemas/Address'
+            images:
+              type: array
+              items:
+                $ref: '#/components/schemas/Image'
+    Address:
+      type: object
+      properties:
+        id:
+          description: Address identifier
+          type: string
+        number:
+          description: house of flat number
+          type: string
+        street:
+          description: street name
+          type: string
+        city:
+          description: city name
+          type: string
+        state:
+          description: state name
+          type: string
+        country:
+          description: country name
+          type: string
+        pincode:
+          description: postal code
+          type: string
+      xml:
+        name: Address
+    AddAddressReq:
+      allOf:
+        - $ref: '#/components/schemas/Address'
+        - type: object
+      xml:
+        name: AddAddressReq
+    Image:
+      type: object
+      properties:
+        id:
+          description: Image identifier
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        imageUrl:
+          description: Ads image URL
+          type: string
+        ads:
+          $ref: '#/components/schemas/Ads'
+      xml:
+        name: Address
+    ImageReq:
+      type: object
+      properties:
+        file:
+          type: string
+          format: binary
+        adsId:
+          type: string
+      xml:
+        name: Image
+    ByteImage:
+      type: object
+      properties:
+        imageData:
+          type: string
+          format: byte
+      xml:
+        name: Image
+    Point:
+      type: object
+      properties:
+        id:
+          description: Address identifier
+          type: string
+        longitude:
+          type: number
+          format: double
+        latitude:
+          type: number
+          format: double
+        address:
+          $ref: '#/components/schemas/Address'
+      xml:
+        name: Point
+    PointReq:
+      type: object
+      properties:
+        id:
+          description: Address identifier
+          type: string
+        longitude:
+          type: number
+          format: double
+        latitude:
+          type: number
+          format: double
+        addressId:
+          type: string
+      xml:
+        name: Point
+    EmptyEntity:
+      type: object
+      xml:
+        name: EmptyEntity

@@ -1,0 +1,41 @@
+@import "../../assets/scss/foundation/variables";
+@import "../../assets/scss/foundation/mixins";
+
+.privacy-wrapper {
+  margin-bottom: 50px;
+
+  @include breakpoint-down("sm") {
+    margin-top: 30px;
+  }
+  h2 {
+    position: relative;
+    margin-bottom: 20px;
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 50%;
+      height: 2px;
+      background-color: $primary-regular;
+    }
+  }
+
+  p {
+    text-align: justify;
+    line-height: 24px;
+  }
+
+  ul {
+    li {
+      line-height: 24px;
+      text-align: justify;
+      margin-bottom: 10px;
+    }
+  }
+
+  span {
+    color: $primary-regular;
+    font-weight: $fw-600;
+  }
+}

@@ -1,0 +1,46 @@
+@import "../../assets/scss/foundation/variables";
+@import "../../assets/scss/foundation/mixins";
+
+.notification-wrapper {
+  background-color: $primary-light;
+  width: 40%;
+  padding: 0.7rem;
+  border-radius: 4px;
+  margin-bottom: 10px;
+
+  @include breakpoint-down("sm") {
+    width: 100%;
+  }
+
+  &__inner {
+    position: relative;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    span {
+      display: inline-block;
+      width: 90%;
+      line-height: 17px;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    right: 0;
+    background-color: $grey-800;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $grey-700;
+      transition: all .3s ease-in-out;
+    }
+    svg {
+      height: 20px;
+      width: 20px;
+
+    }
+  }
+}

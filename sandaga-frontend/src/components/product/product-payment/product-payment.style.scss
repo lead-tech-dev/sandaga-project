@@ -1,0 +1,374 @@
+@import "../../../assets/scss/foundation/variables";
+@import "../../../assets/scss/foundation/mixins";
+
+.product-payment-wrapper {
+  margin: 40px 0 0;
+
+  @include breakpoint-up("lg") {
+    margin: 20px 30px 0;
+  }
+
+  .item {
+    opacity: 1;
+
+    &.hide {
+      transition: all 0.2s ease-in-out;
+      opacity: 0;
+    }
+  }
+
+  .payment {
+    @include breakpoint-down("sm") {
+      font-size: 1.1rem;
+    }
+    .image-holder {
+      position: relative;
+      overflow: hidden;
+      display: block;
+      -webkit-box-shadow: 15px 15px 50px -2px rgba(3, 18, 34, 0.25);
+      -moz-box-shadow: 15px 15px 50px -2px rgba(3, 18, 34, 0.25);
+      box-shadow: 15px 15px 50px -2px rgba(3, 18, 34, 0.25);
+
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+        max-height: 210px;
+      }
+    }
+
+    .name-holder {
+      display: block;
+      font-weight: 600;
+      //margin: 0 0 5px;
+
+      @include breakpoint-up("md") {
+        margin: 0;
+      }
+
+      a {
+        color: $dark;
+        text-decoration: none;
+
+        &.category {
+          font-weight: $fw-400;
+          display: inline-block;
+          margin-top: 10px;
+        }
+        &:hover {
+          color: $primary-regular;
+        }
+      }
+    }
+
+    .user-holder {
+      display: block;
+      font-weight: 500;
+
+      a {
+        color: $dark;
+
+        &:hover {
+          color: $primary-regular;
+        }
+      }
+    }
+
+    .data-holder {
+      display: block;
+    }
+
+    .category-holder {
+      display: block;
+
+      a {
+        font-size: $fs-16;
+        color: $dark;
+        text-decoration: none;
+
+        &:hover {
+          color: $primary-regular;
+        }
+      }
+    }
+
+    .status-holder {
+      display: block;
+
+      &.active {
+        color: $primary-regular;
+      }
+
+      &.expired {
+        color: #e44d4d;
+      }
+
+      &.inactif {
+        color: $secondary-regular;
+      }
+
+      &.vues {
+        color: rgb(197, 120, 193);
+      }
+
+      &.message {
+        color: rgb(120, 177, 197);
+      }
+    }
+
+    .total-holder {
+      display: block;
+      font-weight: 600;
+
+      a {
+        color: $dark;
+
+        &:hover {
+          color: $primary-regular;
+        }
+      }
+    }
+
+    > {
+      li:first-child {
+        font-weight: $fw-400;
+        line-height: 35px;
+
+        @include breakpoint-up("lg") {
+          border: 1px solid #e1e1e1;
+          border-radius: 4px;
+        }
+
+        ul {
+          li {
+            text-transform: uppercase;
+
+            a {
+              text-decoration: none;
+              &:first-child {
+                display: inline-block;
+                margin-left: 15px;
+              }
+            }
+
+
+
+            &:not(.actions) {
+              display: none;
+
+              @include breakpoint-up("lg") {
+                display: flex;
+                justify-content: center;
+              }
+            }
+
+            &.actions {
+              text-align: center;
+
+              @include breakpoint-up("lg") {
+               // text-align: right;
+                padding: 0 15px;
+              }
+
+              a {
+                color: $white;
+                background-color: $secondary-regular;
+                border-radius: 4px;
+                line-height: 35px;
+                min-width: 100%;
+                display: inline-block;
+
+                @include breakpoint-down("lg") {
+                  display: none;
+                }
+
+                @include breakpoint-up("md") {
+                  min-width: 400px;
+                }
+
+                @include breakpoint-up("lg") {
+                  margin-top: 0;
+                  margin-right: 15px;
+                  min-width: 10px;
+                  color: $secondary-regular;
+                  line-height: normal;
+                  background-color: transparent;
+                  white-space: nowrap;
+                }
+
+                @include breakpoint-up("xx") {
+                  max-width: 100%;
+                }
+              }
+            }
+
+            a {
+              color: $dark;
+              line-height: normal;
+              white-space: nowrap;
+            }
+          }
+        }
+      }
+    }
+
+    ul {
+      li {
+        &.image {
+          -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+          max-width: 100%;
+
+          @include breakpoint-up("md") {
+            -ms-flex: 0 0 325px;
+            flex: 0 0 250px;
+            max-width: 250px;
+          }
+
+          @include breakpoint-up("lg") {
+            -ms-flex: 0 0 230px;
+            flex: 0 0 200px;
+            max-width: 200px;
+          }
+        }
+
+        &.name {
+          text-align: center;
+
+          @include breakpoint-up("lg") {
+            //text-align: left;
+          }
+
+          span {
+            + {
+              span {
+                margin-top: 5px;
+              }
+            }
+          }
+        }
+
+        &.data {
+          text-align: center;
+        }
+
+        &.total {
+          text-align: center;
+        }
+        &.date,
+        &.category {
+          display: none;
+
+          @include breakpoint-up("lg") {
+            display: flex;
+          }
+        }
+
+        &.stats {
+          -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+          max-width: 100%;
+
+          .stats-block {
+            position: relative;
+            z-index: 1;
+
+            ul {
+              list-style: none;
+              margin: 15px 0 0;
+              padding: 0 0 10px;
+              overflow: hidden;
+              display: -ms-flexbox;
+              display: flex;
+              -ms-flex-wrap: wrap;
+              flex-wrap: wrap;
+              align-items: center;
+              justify-content: center;
+              border-radius: 4px;
+              background-color: $white;
+              border: 1px solid #e1e1e1;
+
+              @include breakpoint-up("md") {
+                padding: 0;
+              }
+
+              @include breakpoint-up("lg") {
+                background-color: #f3f8fb;
+              }
+
+              li {
+                padding: 10px 0 0;
+                text-align: center;
+                -ms-flex: 0 0 100%;
+                flex: 0 0 100%;
+                font-size: 12px;
+
+                @include breakpoint-up("md") {
+                  padding: 10px 5px 8px;
+                  -ms-flex: 1;
+                  flex: 1;
+                }
+
+                &:first-child {
+                  @include breakpoint-up("md") {
+                    -ms-flex: 0 0 140px;
+                    flex: 0 0 140px;
+                  }
+
+                  @include breakpoint-up("lg") {
+                    -ms-flex: 1;
+                    flex: 1;
+                  }
+                }
+
+                @include breakpoint-up("lg") {
+                  font-size: 14px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .stats-desciption {
+      display: none;
+      width: 100%;
+      min-height: 100px;
+      background-color: red;
+      margin-top: 10px;
+      border-top: 1px solid $grey-900;
+
+      &.active {
+        display: block;
+      }
+    }
+  }
+
+  > {
+    li {
+      &:first-child {
+        ul {
+          li {
+            &.actions {
+              a {
+                @include breakpoint-up("lg") {
+                  max-width: 80px;
+                  -webkit-line-clamp: 1;
+                  -webkit-box-orient: vertical;
+                  overflow: hidden;
+                  -webkit-transform: translate(0, 5px);
+                  transform: translate(0, 5px);
+                }
+
+                @include breakpoint-up("xx") {
+                  max-width: 100%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

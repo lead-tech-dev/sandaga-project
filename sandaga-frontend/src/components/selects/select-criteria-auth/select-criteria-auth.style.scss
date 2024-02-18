@@ -1,0 +1,89 @@
+@import "../../../assets/scss/foundation/variables";
+@import "../../../assets/scss/foundation/mixins";
+
+.select-criteria-auth {
+    position: relative;
+    &__result-box {
+        z-index: 99999999;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        box-shadow: 0 4px 11px rgba(157, 157, 157, 0.21);
+        background-color: $white;
+
+        &.hide {
+            display: none;
+        }
+
+        .result-box-inner {
+            padding: 10px;
+
+            .input-box {
+                margin-top: 0;
+                input {
+                    border: 2px solid $primary-regular;
+                    z-index: 999999;
+                    padding-left: 30px;
+                }
+            }
+        }
+
+
+        .list-box {
+            border-top: 1px solid var(--dss-border-color);
+            padding-left: 10px;
+
+            .options {
+                list-style: none;
+                margin: 5px 0 0 0;
+                padding: 0;
+                max-height: 160px;
+                overflow-y: scroll;
+
+                li {
+                    padding: 5px;
+                    margin-top: 2px;
+
+                    &:hover {
+                        background-color: $grey-100;
+                        cursor: pointer;
+                    }
+
+                    .form-group {
+                        margin-bottom: 0;
+
+                        .form-control {
+                            background-color: transparent;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+    &__search-box {
+        margin-bottom: 13px;
+        button {
+            width: 100%;
+            padding: 0.9rem;
+            background-color: $white;
+            cursor: pointer;
+            caret-color: transparent;
+            border: 1px solid var(--dss-border-color);
+            border-radius: 4px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    .required {
+        position: absolute;
+        font-size: 1rem;
+        top: -25px;
+        right: 0;
+        color: $grey-900;
+    }
+}

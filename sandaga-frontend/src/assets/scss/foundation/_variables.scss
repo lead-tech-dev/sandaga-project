@@ -1,0 +1,133 @@
+/*--------------------------------------------------
+                      VARIABLES       
+---------------------------------------------------*/
+
+/*
+*  Table of content
+*   
+*  COLORS ------------------------------------------
+*  General colors ----------------------------------
+*  Planet colors -----------------------------------
+*  
+*  TYPOGRAPHY --------------------------------------
+*  Font families -----------------------------------
+*  Font weight -------------------------------------
+*  Font size ---------------------------------------
+*  Line height -------------------------------------
+*  Letter spacing ----------------------------------
+*  
+*  BREAKPOINTS -------------------------------------
+*  Breakpoints  ------------------------------------
+*
+*/
+
+/*-------------------------------------------------
+                        COLORS
+-------------------------------------------------*/
+
+/*------------------- General colors -------------*/
+
+$white: hsl(0, 0%, 100%); // #ffffff rgb(255, 255, 255)
+$dark: hsl(0, 0%, 0%); // #000 	rgb(0, 0, 0)
+
+$grey-100: #f9f9f9 !default;
+$grey-200: #f7f7f7 !default;
+$grey-300: #f4f4f4 !default;
+$grey-400: #f3f3f3 !default;
+$grey-500: #f1f1f1 !default;
+$grey-600: #ededed !default;
+$grey-700: #e6e6e6 !default;
+$grey-800: #c2c3cc !default;
+$grey-900: #353333 !default;
+
+$text-bold: #0d1136 !default; // heading
+$text-medium: #424561 !default;
+$text-regular: #77798c !default;
+$text-light: #909090 !default;
+$text-label: #767676 !default;
+
+$transparent: "transparent";
+
+$primary-regular: #009e7f !default; // #01dcb1 rgb(1, 220, 177)
+$primary-hover: #019376 !default;
+$primary-alternate: #028489 !default;
+$primary-light: #d4e4e5 !default; //#d5e9e6
+
+$secondary-regular: #ff5b60 !default; // #01dcb1 rgb(1, 220, 177)
+$secondary-hover: #ff282f !default;
+$secondary-alternate: #fc5c63 !default;
+
+$banner-bg-color: #f3f8fb;
+
+$red: #ea4d4a;
+
+/*-------------------- END COLORS ---------------*/
+
+/*-------------------------------------------------
+                        TYPOGRAPHY
+-------------------------------------------------*/
+
+/*------------------- Font families -------------*/
+
+$montserrat: "Montserrat", sans-serif;
+$poppins: "Poppins", sans-serif;
+
+/*------------------- Font weight ---------------*/
+
+$fw-300: 300;
+$fw-400: 400;
+$fw-500: 500;
+$fw-600: 600;
+$fw-700: 700;
+
+/*------------------- Font size -----------------*/
+
+$fs-80: 3rem;
+$fs-40: 2rem;
+$fs-16: 1.6rem;
+$fs-14: 1.3rem;
+$fs-12: 1rem;
+$fs-11: 0.688rem;
+
+/*------------------- Line height ---------------*/
+
+$lh-103: 6.438rem;
+$lh-52: 3.25rem;
+$lh-52: 3.25rem;
+$lh-125: 1.125rem;
+$lh-15: 1.5rem;
+
+/*------------------- Letter spacing ------------*/
+
+$ls-moins-1-5: -1.5px;
+$ls-plus-2-6: 2.6px;
+$ls-plus-1: 1px;
+/*-------------------- END TYPOGRAPHY -----------*/
+
+/*-------------------------------------------------
+                        BREAKPOINTS
+-------------------------------------------------*/
+
+/*------------------- Breakpoints ---------------*/
+
+// 1440px, 1200px, 992px, 768px, 576px, 320px
+$breakpoints-up: (
+  xx: 90rem,
+  xl: 75rem,
+  lg: 62rem,
+  md: 48rem,
+  sm: 36rem,
+  xs: 20rem,
+);
+
+// 1439px, 1199px, 991px, 767px, 575px, 319px
+$breakpoints-down: (
+  xx: 89.938rem,
+  xl: 74.938rem,
+  lg: 61.938rem,
+  md: 47.938rem,
+  sm: 35.938rem,
+  xs: 19.938rem,
+);
+
+/*-------------------- END BREAKPOINTS ----------*/

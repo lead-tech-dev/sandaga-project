@@ -1,0 +1,23 @@
+/*=============================================
+=                   CSS RESETS                =
+=============================================*/
+
+/**
+ *
+ * The normalize.css npm package improves browser rendering consistency.
+ * https://necolas.github.io/normalize.css/
+ *
+ */
+
+@import "~normalize-scss/sass/normalize/import-now";
+@import "~bootstrap/scss/bootstrap.scss";
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+//@import url("https://fonts.googleapis.com/css2?family=Spartan:wght@300;400;600;700&display=swap");
+
+//@import "../../fontawesome/scss/fontawesome.scss";
+//@import "../../fontawesome/scss/solid.scss";
+//@import "../../fontawesome/scss/brands.scss";
+
+@import "~font-awesome/scss/font-awesome.scss";
+@import "~flag-icons/css/flag-icons.min.css";

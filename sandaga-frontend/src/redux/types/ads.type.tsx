@@ -1,0 +1,21 @@
+export const AdsActionTypes = {
+  NEXT_STEP: "NEXT_STEP",
+  PREVIOUS_STEP: "PREVIOUS_STEP",
+  ADD_DATA_STEP: "ADD_DATA_STEP",
+  REMOVE_DATA_STEP: "REMOVE_DATA_STEP",
+  ERRORS_STEP: "ERRORS_STEP",
+  GLOBAL_STEP: "GLOBAL_STEP",
+  INIT_ADS_DATA: "INIT_ADS_DATA",
+} as const;
+
+export const PostedAdsActionTypes = {
+  ADS_REQUEST: "ADS_REQUEST",
+  ADS_SUCCESS: "ADS_SUCCESS",
+  ADS_ERROR: "ADS_ERROR",
+} as const;
+
+export const ImageActionTypes = {
+  IMAGE_REQUEST: "IMAGE_REQUEST",
+  IMAGE_SUCCESS: "IMAGE_SUCCESS",
+  IMAGE_ERROR: "IMAGE_ERROR",
+};

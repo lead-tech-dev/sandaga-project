@@ -1,0 +1,54 @@
+@import "../../assets/scss/foundation/variables";
+@import "../../assets/scss/foundation/mixins";
+
+.save-search-wrapper {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 41%;
+
+  @include breakpoint-down("sm"){
+    left: 17%;
+  }
+
+  &__body {
+
+    padding: 1rem;
+    box-shadow: var(--dss-box-shadows-base);
+    margin-bottom: 10px;
+
+   // margin-left: -40px;
+    background-color: $primary-light;
+    display: flex;
+    border-radius: 4px;
+
+    &.show {
+      display: none;
+    }
+    .message {
+      .text {
+        width: 100%;
+      }
+
+      .link {
+        margin-top: 20px;
+
+        a {
+          text-decoration: none;
+        }
+
+      }
+    }
+    svg {
+      cursor: pointer;
+      margin-top: -8px;
+      height: 30px;
+      width: 30px;
+    }
+    //display: none;
+  }
+
+  &__btn {
+    text-align: center;
+
+  }
+}

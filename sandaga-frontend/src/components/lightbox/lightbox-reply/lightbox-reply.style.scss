@@ -1,0 +1,133 @@
+@import "../../../assets/scss/foundation/variables";
+@import "../../../assets/scss/foundation/mixins";
+
+.lightbox-reply {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 900000000;
+  width: 100%;
+  height: 100%;
+  padding: 70px 0;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in;
+
+  &.open {
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.3s ease-out;
+  }
+
+
+
+  .lightbox-content {
+    position: relative;
+    width: 500px;
+
+    @include breakpoint-down("sm") {
+      width: 270px;
+    }
+
+    @include breakpoint-down("xs") {
+      width: 240px;
+    }
+
+
+
+    margin: 0 auto;
+
+    &__close {
+      position: absolute;
+      right: 0;
+      top: -30px;
+
+      cursor: pointer;
+
+      svg {
+        height: 30px;
+        width: 30px;
+        path {
+          fill: #fff;
+          transition: all 0.3s ease;
+          &:hover {
+            fill: $primary-regular;
+          }
+        }
+      }
+    }
+
+
+    .reply-wrapper {
+      background-color: white;
+      border-radius: 4px;
+      margin: 20px 0;
+
+
+      &__left {
+        padding: 30px 20px;
+        box-shadow: var(--dss-box-shadows-base);
+
+        .info-inner {
+          h3 {
+            line-height: 2.2rem;
+            font-size: 2rem;
+            font-weight: $fw-600;
+            color: rgb(21 34 51);
+
+            @include breakpoint-down("sm") {
+              font-size: 1.5rem;
+            }
+
+            @include breakpoint-down("xs") {
+              font-size: 1.3rem;
+            }
+          }
+          p {
+            line-height: 1.9rem;
+            font-weight: $fw-400;
+            color: #a8b4c0;
+
+            @include breakpoint-down("sm") {
+              font-size: 1.1rem;
+            }
+
+            @include breakpoint-down("xs") {
+              font-size: 0.9rem;
+            }
+          }
+
+          .message {
+            text-align: center;
+            .success, .error {
+              display: inline-block;
+              padding: 1rem;
+              background-color: $primary-light;
+              border-radius: 4px;
+
+            }
+
+            .success {
+              color: $primary-regular;
+            }
+            .error {
+              color: $secondary-regular;
+            }
+          }
+        }
+
+        .form-wrapper {
+          display: flex;
+          flex-direction: column;
+          gap: 30px;
+
+        }
+      }
+
+      &__right {
+        padding: 30px 20px;
+      }
+    }
+  }
+}

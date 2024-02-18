@@ -1,0 +1,6 @@
+*/target/
+*/.idea/
+.idea
+mondial-relay-wsdl/
+*/node_modules
+sandaga-logs/

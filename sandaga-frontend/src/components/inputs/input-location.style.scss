@@ -1,0 +1,30 @@
+@import "../../assets/scss/foundation/variables";
+@import "../../assets/scss/foundation/mixins";
+
+.input-location-wrapper {
+  .address {
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+    &.shadow {
+      box-shadow: var(--dss-box-shadows-base);
+      padding: 0.5rem;
+    }
+
+    .items {
+      margin-top: 1px;
+      .item {
+        &:not(:first-child){
+          border-top: 1px solid $grey-600;
+          border-bottom: 1px solid $grey-600;
+        }
+
+        cursor: pointer;
+        padding: 1rem;
+        &:hover {
+          background-color: $primary-light;
+        }
+      }
+    }
+  }
+}

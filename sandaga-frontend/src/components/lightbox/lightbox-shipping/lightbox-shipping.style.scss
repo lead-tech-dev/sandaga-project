@@ -1,0 +1,349 @@
+@import "../../../assets/scss/foundation/variables";
+@import "../../../assets/scss/foundation/mixins";
+
+.lightbox-shipping {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 900000000;
+  width: 100%;
+  height: 100%;
+  padding: 50px 100px;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in;
+
+
+
+  @include breakpoint-down("md") {
+    padding-inline: 10px;
+  }
+
+  &.custom {
+    padding: 50px 100px;
+
+    @include breakpoint-down("md") {
+      padding-inline: 10px;
+    }
+
+    .lightbox-content {
+
+      .shipping-wrapper {
+        margin: 0 auto;
+
+
+        .header {
+          padding: 1rem
+        }
+
+        .shipping-step {
+          margin: 40px 0 60px 0;
+        }
+      }
+    }
+  }
+
+  &.open {
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.3s ease-out;
+  }
+
+
+
+  .lightbox-content {
+  // position: relative;
+    //width: 900px;
+    max-width: 800px;
+    max-height: 550px;
+
+    margin: 0 auto;
+
+    &__close {
+     position: relative;
+
+      svg {
+        position: absolute;
+        right: 0;
+        top: -30px;
+        opacity: 1;
+
+        cursor: pointer;
+        height: 30px;
+        width: 30px;
+        path {
+          fill: $white;
+          transition: all 0.3s ease;
+          &:hover {
+            fill: $primary-regular;
+          }
+        }
+      }
+    }
+
+
+    .shipping-wrapper {
+      background-color: white;
+      border-radius: 4px;
+      margin: 10px 0;
+      padding: 1.5rem;
+      max-width: 800px;
+      max-height: 550px;
+      overflow-y: scroll;
+
+      .header {
+        background-color: $grey-700;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+
+
+
+        h3 {
+          display: block;
+          font-weight: $fw-600;
+          font-size: 1.3rem;
+          margin: 0 0 5px;
+
+          @include breakpoint-down("sm") {
+            font-size: 1.2rem;
+          }
+
+          span {
+            font-weight: $fw-500;
+            font-size: 1.2rem;
+            text-transform: capitalize;
+            font-style: italic;
+
+            @include breakpoint-down("sm") {
+              font-size: 1.1rem;
+            }
+          }
+        }
+      }
+
+      .shipping-step {
+        margin: 20px 0 10px 0;
+        .timeline {
+          position: relative;
+
+          .timeline-item {
+            margin-bottom: 15px;
+            position: relative;
+            padding: 10px 0 0 40px;
+
+            @include breakpoint-down("md") {
+              box-shadow: var(--dss-box-shadows-base);
+              margin-bottom: 30px;
+              padding-left: 20px;
+              padding-right: 10px;
+              border-radius: 4px;
+            }
+
+
+            &::after {
+              content: "";
+              position: absolute;
+              left: 5px;
+              top: 12px;
+              height: 100%;
+              width: 1px;
+              background-color: $primary-regular;
+
+              @include breakpoint-down("md") {
+                height: 70%;
+              }
+
+              @include breakpoint-down("sm") {
+                height: 40%;
+                left: 8px;
+              }
+            }
+
+            &::before {
+              content: "";
+              position: absolute;
+              left: 0;
+              top: 12px;
+              height: 11px;
+              width: 11px;
+              background-color: $primary-regular;
+              border-radius: 50%;
+
+              @include breakpoint-down("sm") {
+                left: 3px;
+              }
+            }
+
+            &.disabled {
+              &::before {
+                background-color: $grey-800;
+              }
+
+              &::after {
+                background-color: $grey-800;
+              }
+
+              .question {
+                color: $grey-800;
+                font-style: italic;
+              }
+            }
+
+
+            &:last-child {
+              //margin-bottom: 0;
+            }
+
+            .question {
+              display: block;
+              color: $primary-regular;
+              font-weight: $fw-500;
+              font-size: 1.4rem;
+              margin: 0 0 10px;
+
+              @include breakpoint-down("sm") {
+                font-size: 1.2rem;
+              }
+
+
+              .btn {
+                width: 150px;
+                border: 1px solid $secondary-alternate;
+                margin-left: 15px;
+
+                span {
+                  text-transform: none;
+                  color: $secondary-alternate;
+                  margin-left: 5px;
+                }
+              }
+            }
+
+            .select-wrapper {
+              position: relative;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              gap: 30px;
+
+              @include breakpoint-down("sm") {
+                flex-direction: column;
+              }
+
+
+              .select-content {
+                width: 50%;
+
+                @include breakpoint-down("sm") {
+                  width: 100%;
+                }
+
+                .download-link {
+                  margin-top: 5px;
+                  font-size: 1.2rem;
+
+
+                  a {
+                    text-decoration: none;
+                    color: $dark;
+                    margin-right: 10px;
+                    span {
+                      color: $secondary-regular;
+                      font-style: italic;
+                      font-weight: $fw-600;
+                    }
+                  }
+
+                  i {
+                    cursor: pointer;
+                    span {
+                      z-index: 999999;
+                      position: absolute;
+                      top: 38%;
+                      right: 12%;
+                      display: none;
+                      background-color: $primary-light;
+                      padding: 1rem;
+                      width: 40%;
+                      line-height: 18px;
+                      font-size: 1.2rem;
+                      border-radius: 4px;
+
+                      &.download-info {
+                        top: 40%;
+                        right: 23%;
+                      }
+
+                      &.no-receive {
+                        top: 55%;
+                        right: 31%;
+                      }
+
+                      &.problem {
+                        top: -55%;
+                        right: 29%;
+                      }
+                    }
+
+                    &:hover {
+                      span {
+                        display: inline-block;
+                        transition: all 0.6s ease-in-out;
+                      }
+                    }
+                  }
+
+                  .form-wrapper {
+                    .indication {
+                      display: inline-block;
+                      font-size: 1.1rem;
+                      line-height: 17px;
+                      margin-top: 5px;
+                      color: $secondary-regular;
+                      text-align: justify;
+                    }
+                  }
+
+                }
+
+                .step-error {
+                  position: absolute;
+                  top: 50px;
+                  color: $secondary-regular;
+                  font-size: 10px;
+                  margin-top: 5px
+                }
+              }
+
+              .info {
+                width: 50%;
+
+                @include breakpoint-down("sm") {
+                  width: 100%;
+                }
+
+                p {
+                  line-height: 20px;
+                  font-size: 1.2rem;
+
+                  @include breakpoint-down("sm") {
+                    font-size: 1.1rem;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .footer {
+        display: flex;
+        gap: 10px;
+        font-size: 1rem;
+        font-style: italic;
+        margin-top: 50px;
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+@import "../../assets/scss/foundation/variables";
+@import "../../assets/scss/foundation/mixins";
+@import "../../assets/scss/base/root";
+
+.recent-search-wrapper {
+  margin-top: 35px;
+  box-shadow: var(--dss-box-shadows-base);
+  padding: 1.3rem 2rem;
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+
+  .icon-close {
+    position: absolute;
+    top: 1.4rem;
+    right: 2rem;
+    cursor: pointer;
+  }
+
+  .header {
+    margin-bottom: 50px;
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 5px;
+    }
+  }
+
+  .location {
+    font-weight: $fw-400;
+    svg {
+      margin-right: 5px;
+      margin-bottom: 2px;
+
+    }
+  }
+}

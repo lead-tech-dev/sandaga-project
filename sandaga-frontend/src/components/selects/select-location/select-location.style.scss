@@ -1,0 +1,206 @@
+@import "../../../assets/scss/foundation/variables";
+@import "../../../assets/scss/foundation/mixins";
+
+.select-location {
+  height: 100%;
+  width: 100%;
+  position: relative;
+
+  button {
+    padding: 1.2rem;
+    border: 1px solid #e6e6e6;
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.6rem;
+    color: #77798C;
+    font-size: 1.3rem;
+    z-index: 9;
+    border: none;
+    border-radius: 5px;
+    background: $white;
+    cursor: pointer;
+
+    transition: border-color 0.15s ease-in-out 0s,
+    box-shadow 0.15s ease-in-out 0s;
+
+    @include breakpoint-down("xs"){
+      font-size: 1.2rem;
+    }
+
+    svg {
+      display: inline-block;
+      height: 17px;
+      width: 17px;
+      margin-bottom: 3px;
+      margin-right: 8px;
+
+
+    }
+  }
+
+  &__search {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+
+    svg {
+      position: absolute;
+      height: 17px;
+      width: 17px;
+      top: 14px;
+      left: 1rem;
+      z-index: 1;
+
+    }
+
+    .input-box {
+      margin-top: 0 !important;
+      .location {
+        padding: 1.2rem 1.2rem 1.2rem 2.9rem;
+
+        &:focus {
+          outline: 2px solid $primary-regular !important;
+        }
+      }
+    }
+
+    .suggestions {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1.4rem 1.4rem 0.5rem 1.4rem;
+      background-color: $white;
+      margin-top: 5px;
+      border-radius: 4px;
+      //min-height: 180px;
+      box-shadow: 0 4px 11px rgba(157, 157, 157, 0.21);
+
+      ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+          padding: 0.8rem;
+          margin-left: -0.8rem;
+          cursor: pointer;
+          border-radius: 4px;
+          font-weight: $fw-500;
+          font-size: 1.2rem;
+
+          &:not(:last-child) {
+            margin-bottom: 10px;
+          }
+          &:hover {
+            background-color: $primary-light;
+            color: $primary-regular;
+
+            transition: all 0.2s ease;
+          }
+        }
+      }
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1.4rem;
+      background-color: $white;
+      margin-top: 5px;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+      min-height: 180px;
+      box-shadow: 0 4px 11px rgba(157, 157, 157, 0.21);
+
+
+      &.hide {
+        display: none;
+      }
+
+      .result {
+        span {
+          position: relative;
+          display: inline-block;
+          padding: 1rem 4rem 1rem 1rem;
+          background-color: $grey-500;
+          border-radius: 20px;
+          font-weight: $fw-500;
+
+          svg {
+            width: 18px;
+            height: 18px;
+            left: initial;
+            right: 1rem;
+            top: 0.9rem;
+            border-radius: 50%;
+            background-color: $grey-800;
+            padding: 0.1rem;
+            cursor: pointer;
+
+            &:hover {
+              background-color: $grey-900;
+            }
+          }
+        }
+
+
+      }
+
+      .search {
+        label {
+          font-weight: $fw-400;
+        }
+        .radius {
+          color: $primary-regular;
+          font-size: 1.3rem;
+          font-weight: $fw-500;
+        }
+        .input-radius {
+          margin: 20px 0 15px 0;
+          border: solid 2px #82CFD0;
+          border-radius: 8px;
+          height: 5px;
+          width: 100%;
+          outline: none;
+          padding: 0 !important;
+          transition: background 450ms ease-in;
+          -webkit-appearance: none;
+
+          &::-webkit-slider-thumb {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            -webkit-appearance: none;
+            cursor: ew-resize;
+            background: $white;
+            border: 1px solid $grey-900;
+          }
+        }
+      }
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem;
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+      background-color: white;
+      box-shadow: 0 4px 11px rgba(157, 157, 157, 0.21);
+
+      &.hide {
+        display: none;
+      }
+      button {
+        padding-top: 0.8rem !important;
+        padding-bottom: 0.8rem !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+export const PaymentActionTypes = {
+    PAYMENT_REQUEST: "PAYMENT_REQUEST",
+    PAYMENT_SUCCESS: "PAYMENT_SUCCESS",
+    PAYMENT_ERROR: "PAYMENT_ERROR"
+}

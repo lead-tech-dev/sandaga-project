@@ -1,0 +1,64 @@
+@import "../../../assets/scss/foundation/variables";
+@import "../../../assets/scss/foundation/mixins";
+
+.select-criteria {
+  position: relative;
+
+  &__result-box {
+    z-index: 99999999;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: $white;
+
+    .result-box-inner {
+      padding: 10px;
+
+      .input-box {
+        margin-top: 0;
+        input {
+          border: 2px solid $primary-regular;
+          z-index: 999999;
+          padding-left: 30px;
+        }
+      }
+    }
+
+    .list-box {
+      border-top: 1px solid var(--dss-border-color);
+      padding-left: 10px;
+
+      .options {
+        list-style: none;
+        margin: 5px 0 0 0;
+        padding: 0;
+        max-height: 160px;
+        overflow-y: scroll;
+
+        &.height {
+          max-height: 320px;
+        }
+
+        li {
+          padding: 5px;
+          margin-top: 2px;
+
+          &:hover {
+            background-color: $grey-100;
+            cursor: pointer;
+          }
+
+          .form-group {
+            margin-bottom: 0;
+
+            .form-control {
+              background-color: transparent;
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+}

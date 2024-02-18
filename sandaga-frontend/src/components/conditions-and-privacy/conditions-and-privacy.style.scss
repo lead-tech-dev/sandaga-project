@@ -1,0 +1,129 @@
+@import "../../assets/scss/foundation/variables";
+@import "../../assets/scss/foundation/mixins";
+
+.condition-privacy-wrapper {
+  width: 88vw;
+  margin: auto;
+  padding-top: 10px;
+  padding-bottom: 150px;
+
+  @include breakpoint-down("md") {
+    padding-top: 70px;
+  }
+
+  .section-title {
+    position: relative;
+    h2 {
+      @include breakpoint-down("sm") {
+        font-size: 1.6rem;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        width: 50%;
+        height: 2px;
+        background-color: $primary-regular;
+
+        @include breakpoint-down("sm") {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .content {
+    //flex-direction: column; // ou row
+    display: flex;
+
+
+    .left-content {
+      flex-direction: column; // ou row
+      width: 25%; // ou 25%
+      flex: 0 0 auto;
+
+      @include breakpoint-down("sm") {
+        display: none;
+      }
+
+      &.sticky {
+        z-index: -1;
+      }
+
+      .left-inner-content {
+        background-color: #fff; // ou transparent
+        padding: 0 1rem 1rem 1rem; // ou 0
+
+        a {
+          font-size: 1.2rem;
+          text-decoration: none;
+          padding: 10px 0;
+          display: block;
+          text-transform: uppercase;
+          transition: all 0.3s ease;
+          cursor: pointer;
+
+          &.active, &:hover {
+            color: $primary-regular;
+          }
+        }
+      }
+    }
+
+    .right-content {
+      width: 75%;
+
+      @include breakpoint-down("sm") {
+        width: 100%;
+      }
+
+      h2 {
+        font-size: 2rem;
+        color: $grey-900;
+        font-weight: $fw-700;
+        margin-bottom: 10px;
+        margin-left: 7px;
+        position: relative;
+
+      }
+
+      p {
+        //font-size: 1rem;
+        color: var(--dss-text-color);
+        font-weight: $fw-500;
+        margin-bottom: 10px;
+        padding: 0.3rem 1rem; // ou 0
+        line-height: 1.8;
+        text-align: justify;
+
+        span {
+          font-weight: $fw-600;
+          color: $secondary-regular;
+        }
+      }
+
+      ul {
+        margin-left: 20px;
+
+        li {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

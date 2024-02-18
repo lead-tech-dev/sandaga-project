@@ -60,7 +60,7 @@ public class UserIntegrationTest {
                 .isCreated();
     }
 
-/*    @Test
+    @Test
     void cannotRegisterForExistingAUser() {
         // Create registration request
 
@@ -92,5 +92,5 @@ public class UserIntegrationTest {
                 .exchange()
                 .expectStatus()
                 .is4xxClientError();
-    }*/
+    }
 }

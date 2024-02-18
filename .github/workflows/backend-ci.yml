@@ -10,7 +10,7 @@ jobs:
     runs-on: Ubuntu-latest
     services:
       postgres:
-        image: postgres:15
+        image: postgres:15.5
         env:
           POSTGRES_USER: maximan
           POSTGRES_PASSWORD: Makong57

@@ -3,7 +3,7 @@
   "containerDefinitions": [
     {
       "name": "sandaga-api",
-      "image": "cartman81/sandaga-api:latest",
+      "image": "cartman81/sandaga-api:18.02.2024.19.50.19",
       "essential": true,
       "memory": 512,
       "environment": [

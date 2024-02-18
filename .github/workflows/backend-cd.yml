@@ -1,10 +1,10 @@
 on:
   workflow_dispatch:
-    push:
-      branches:
-        - main
-      paths:
-        - sandaga-backend/**
+  push:
+    branches:
+      - main
+    paths:
+      - sandaga-backend/**
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -47,7 +47,7 @@ jobs:
         run: |
           echo "Dockerrun.aws.json before updating tag"
           cat Dockerrun.aws.json
-          set -i -E 's_(cartman81/sandaga-api:)([^"]")_\1'${{steps.build_number.outputs.BUILD_NUMBER}}'_'Dockerrun.aws.json
+          set -i -E 's_(cartman81/sandaga-api:)([^"]*)_\1'${{steps.build_number.outputs.BUILD_NUMBER}}'_'Dockerrun.aws.json
           echo "Dockerrun.aws.json after updating tag"
           cat Dockerrun.aws.json
       - name: Deploy to EB

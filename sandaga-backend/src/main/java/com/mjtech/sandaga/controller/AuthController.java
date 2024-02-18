@@ -89,7 +89,7 @@ public class AuthController  {
   }
 
 
-  @ApiOperation(value = "Signup the a new user", nickname = "signUp", notes = "Creates a new user, who can login.", response = SignedInUserDto.class, tags={ "user" })
+  @ApiOperation(value = "Signup the a new user", nickname = "signUp", notes = "Creates a new user, who can login.", response = SignedInUserDto.class, tags={ "user", })
   @ApiResponses(value = {
   @ApiResponse(code = 201, message = "For successful user creation", response = SignedInUserDto.class) })
   @PostMapping(value = "/api/v1/users")

@@ -7,7 +7,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PingPongController {
 
-    @GetMapping("/ping")
+    @ApiOperation(value = "Check app healty.", nickname = "getPingPong", notes = "Check app healty", response = PingPong.class, tags={ "pingpong" })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "For successful operation.", response = PingPong.class) })
+    @GetMapping(
+            value = "/ping",
+            produces = { "application/json" }
+    )
     public PingPong getPingPong() {
         return new PingPong("Pong");
     }

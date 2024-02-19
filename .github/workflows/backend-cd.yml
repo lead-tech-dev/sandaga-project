@@ -48,18 +48,16 @@ jobs:
         run: echo "BUILD_NUMBER=$(date '+%d.%m.%Y.%H.%M.%S')" >> $GITHUB_OUTPUT
       - name: Send Slack Message
         run: >
-          curl -X POST -H 'Content-type: application/json'
-          --data '
-            {"text":"Building with gradle :gradle:"}' 
-          ${{ secrets.SLACK_WEBHOOK_URL }}
+          curl  -H 'Content-type: application/json'
+          -d '{"text":"Building with gradle :gradle:"}' 
+          -X POST ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Build package push with gradle
         run: ./gradlew build -Dargs=${{steps.build_number.outputs.BUILD_NUMBER}} jib
       - name: Send Slack Message
         run: >
-          curl -X POST -H 'Content-type: application/json'
-          --data '
-            {"text":":docker: Image tag:${{steps.build_number.outputs.BUILD_NUMBER}} pushed to https://hub.docker.com/repository/docker/cartman81/sandaga-api"}' 
-          ${{ secrets.SLACK_WEBHOOK_URL }}
+          curl -H 'Content-type: application/json'
+          -d '{"text":":docker: Image tag:${{steps.build_number.outputs.BUILD_NUMBER}} pushed to https://hub.docker.com/repository/docker/cartman81/sandaga-api"}' 
+          -X POST ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Update Dockerrun.aws.json api image tag with new build number
         run: |
           echo "Dockerrun.aws.json before updating tag"
@@ -69,10 +67,9 @@ jobs:
           cat Dockerrun.aws.json
       - name: Send Slack Message
         run: >
-          curl -X POST -H 'Content-type: application/json'
-          --data '
-            {"text":":aws: Starting deployment to Elastic Beanstalk :gradle:"}' 
-          ${{ secrets.SLACK_WEBHOOK_URL }}
+          curl -H 'Content-type: application/json'
+          -d '{"text":":aws: Starting deployment to Elastic Beanstalk :gradle:"}' 
+          -X POST ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v21
         with:
@@ -86,10 +83,9 @@ jobs:
          deployment_package: sandaga-backend/Dockerrun.aws.json
       - name: Send Slack Message
         run: >
-          curl -X POST -H 'Content-type: application/json'
-          --data '
-            {"text":":githubloading: Committing to repo https://github.com/lead-tech-dev/sandaga-project"}' 
-          ${{ secrets.SLACK_WEBHOOK_URL }}
+          curl -H 'Content-type: application/json'
+          -d '{"text":":githubloading: Committing to repo https://github.com/lead-tech-dev/sandaga-project"}' 
+          -X POST ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Commit and push Dockerrun.aws.json
         run: |
           git config user.name github-actions
@@ -99,14 +95,12 @@ jobs:
           git push
       - name: Send Slack Message
         run: >
-          curl -X POST -H 'Content-type: application/json'
-          --data '
-            {"text":"Deployment and Commit completed :github_check_mark: :party_blob: - http://sandaga-api-env.eba-9qih3c3p.eu-west-3.elasticbeanstalk.com"}' 
-          ${{ secrets.SLACK_WEBHOOK_URL }}
+          curl -H 'Content-type: application/json'
+          -d '{"text":"Deployment and Commit completed :github_check_mark: :party_blob: - http://sandaga-api-env.eba-9qih3c3p.eu-west-3.elasticbeanstalk.com"}' 
+          -X POST ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Send Slack Message
         if: always()
         run: >
-          curl -X POST -H 'Content-type: application/json'
-          --data '
-            {"text":"Job Status ${{ job.status }}"}' 
-          ${{ secrets.SLACK_WEBHOOK_URL }}
+          curl -H 'Content-type: application/json'
+          -d '{"text":"Job Status ${{ job.status }}"}' 
+          -X POST ${{ secrets.SLACK_WEBHOOK_URL }}

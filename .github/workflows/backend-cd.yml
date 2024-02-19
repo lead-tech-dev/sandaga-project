@@ -60,6 +60,7 @@ jobs:
           -d '{"text":":docker: Image tag:${{steps.build_number.outputs.BUILD_NUMBER}} pushed to https://hub.docker.com/repository/docker/cartman81/sandaga-api"}' 
           -X POST ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Update Dockerrun.aws.json api image tag with new build number
+        working-directory: ./sandaga-backend
         run: |
           echo "Dockerrun.aws.json before updating tag"
           cat Dockerrun.aws.json

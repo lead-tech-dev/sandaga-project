@@ -28,7 +28,7 @@ jobs:
         working-directory: ./sandaga-backend
     steps:
       - name: Send Slack Message
-        run: |
+        run: >
           curl && curl -X POST -H 'Content-type: application/json'
           --data '
             {"text":"Deployment stated :progress_bar: :fingerscrossed:"}
@@ -104,11 +104,4 @@ jobs:
           curl && curl -X POST -H 'Content-type: application/json'
           --data '
             {"text":"Deployment and Commit completed :github_check_mark: :party_blob: - http://sandaga-api-env.eba-9qih3c3p.eu-west-3.elasticbeanstalk.com"}' 
-          ${{ secrets.SLACK_WEBHOOK_URL }}
-      - name: Send Slack Message
-        if: always()
-        run: >
-          curl && curl -X POST -H 'Content-type: application/json'
-          --data '
-            {"text":"Job Status ${{ job.status }}"}' 
           ${{ secrets.SLACK_WEBHOOK_URL }}

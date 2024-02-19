@@ -29,8 +29,10 @@ jobs:
     steps:
       - name: Send Slack Message
         run: >
-          curl -X POST -H 'Content-type: application/json'
-          --data '{"text":"Deployment stated :progress_bar: :fingerscrossed:"}' ${{ secrets.SLACK_WEBHOOK_URL }}
+          curl && curl -X POST -H 'Content-type: application/json'
+          --data '
+            {"text":"Deployment stated :progress_bar: :fingerscrossed:"}' 
+          https://hooks.slack.com/services/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
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v3
         with:

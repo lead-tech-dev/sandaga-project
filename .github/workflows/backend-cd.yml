@@ -26,6 +26,7 @@ jobs:
     defaults:
       run:
         working-directory: ./sandaga-backend
+        shell: bash -l {0}
     steps:
       - name: Send Slack Message
         run: >

@@ -23,9 +23,9 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-    defaults:
-      run:
-        working-directory: ./sandaga-backend
+#    defaults:
+#      run:
+#        working-directory: ./sandaga-backend
     steps:
       - name: Send Slack Message
         run: >
@@ -52,6 +52,7 @@ jobs:
           -d '{"text":"Building with gradle :gradle:"}' 
           -X POST ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Build package push with gradle
+        working-directory: ./sandaga-backend
         run: ./gradlew build -Dargs=${{steps.build_number.outputs.BUILD_NUMBER}} jib
       - name: Send Slack Message
         run: >

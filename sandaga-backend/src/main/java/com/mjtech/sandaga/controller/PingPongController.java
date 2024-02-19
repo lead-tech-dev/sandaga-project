@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PingPongController {
 
-    @ApiOperation(value = "Check app healty or not.", nickname = "getPingPong", notes = "Check app healty", response = PingPong.class, tags={ "pingpong" })
+    @ApiOperation(value = "Check app healty.", nickname = "getPingPong", notes = "Check app healty", response = PingPong.class, tags={ "pingpong" })
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "For successful operation.", response = PingPong.class) })
     @GetMapping(

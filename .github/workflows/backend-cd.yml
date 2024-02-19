@@ -27,6 +27,6 @@ jobs:
     steps:
       - name: Send Slack Message
         run: >
-          curl && curl -d '{"text":"Deployment stated :progress_bar: :fingerscrossed:"}'  
+          curl -d '{"text":"Deployment stated :progress_bar: :fingerscrossed:"}'  
           -H 'Content-type: application/json'
           -X POST ${{ secrets.SLACK_WEBHOOK_URL }}

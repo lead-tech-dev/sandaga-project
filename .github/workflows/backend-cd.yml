@@ -27,6 +27,8 @@ jobs:
       run:
         working-directory: ./sandaga-backend
     steps:
+      - name: Install curl
+        run: sudo apt-get install -y curl
       - name: Send Slack Message
         run: >
           curl && curl -X POST -H 'Content-type: application/json'

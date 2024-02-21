@@ -33,11 +33,11 @@ jobs:
           password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
       - name: Docker build and push
         run: |
-          chmod +x ../../.ci/build-publish.sh
+          chmod +x ../.ci/build-publish.sh
           USERNAME = cartman81 \
           REPO = sandaga-frontend \
           TAG = ${{steps.build-number.outputs.BUILD_NUMBER}} \
-          ../../.ci/build-publish.sh . \
+          ../.ci/build-publish.sh . \
           --build-arg api_base_url=http://sandaga-api-env-2.eba-9qih3c3p.eu-west-3.elasticbeanstalk.com:8080
       - name: Send slack message
         run: >

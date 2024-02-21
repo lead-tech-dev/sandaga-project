@@ -4,7 +4,6 @@ import {useLocation} from "react-router-dom";
 import {stripeUpdate} from "../components/api/api-user";
 import {State} from "../redux/types";
 import {connect, ConnectedProps, useDispatch} from "react-redux";
-import {Alert} from "reactstrap";
 import {SEO} from "../components/seo";
 import Success from "../components/Success";
 import {AuthActionTypes} from "../redux/types/auth.type";

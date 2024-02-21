@@ -28,7 +28,7 @@ services:
     container_name: sandaga-api
     image: cartman81/sandaga-api
     environment:
-      SPRING_DATASOURCE: jdbc:postgresql://db:5432/sandagadb
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/sandagadb
     ports:
       - "8088:8080"
     networks:
@@ -42,6 +42,8 @@ services:
     image: cartman81/sandaga-frontend
     build:
       context: sandaga-frontend
+      args:
+        api_base_url: http://localhost:8088
     ports:
       - "3000:3000"
     networks:
@@ -81,4 +83,7 @@ volumes:
 #    depends_on:
 #      db:
 #        condition: service_healthy
+
+#docker run --rm --name sandaga-api-test -p 8088:8080 --network sandaga-project_db cartman81/sandaga-api --spring.datasource.url=jdbc:postgresql://db:5432/sandagadb
+
 

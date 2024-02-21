@@ -27,7 +27,7 @@ jobs:
         id: build-number
         run: echo "BUILD_NUMBER=$(date '+%d.%m.%Y.%H.%M.%S')" >> $GITHUB_OUTPUT
       - name: Login to dockerhub
-        uses: docker/login-action@v3
+        uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
@@ -36,19 +36,19 @@ jobs:
           chmod +x ../.ci/build-publish.sh
           USERNAME=cartman81 \
           REPO=sandaga-frontend \
-          TAG=${{steps.build-number.outputs.BUILD_NUMBER}} \
+          TAG=${{ steps.build-number.outputs.BUILD_NUMBER }} \
           ../.ci/build-publish.sh . \
           --build-arg api_base_url=http://sandaga-api-env-2.eba-9qih3c3p.eu-west-3.elasticbeanstalk.com:8080
       - name: Send slack message
         run: >
           curl -H 'Content-type: application/json'
-          -d '{"text":":docker: Image tag:${{steps.build_number.outputs.BUILD_NUMBER}} pushed to https://hub.docker.com/repository/docker/cartman81/sandaga-frontend"}' 
+          -d '{"text":":docker: Image tag:${{ steps.build-number.outputs.BUILD_NUMBER }} pushed to https://hub.docker.com/repository/docker/cartman81/sandaga-frontend"}' 
           -X POST ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Update Dockerrun.aws.json react image tag with new build number
         run: |
           echo "Dockerrun.aws.json before updating tag"
           cat ../Dockerrun.aws.json
-          sed -i -E 's_(cartman81/sandaga-api:)([^"]*)_\1'${{steps.build_number.outputs.BUILD_NUMBER}}'_' ../Dockerrun.aws.json
+          sed -i -E 's_(cartman81/sandaga-frontend:)([^"]*)_\1'${{ steps.build-number.outputs.BUILD_NUMBER }}'_' ../Dockerrun.aws.json
           echo "Dockerrun.aws.json after updating tag"
           cat ../Dockerrun.aws.json
       - name: Send slack message
@@ -78,7 +78,7 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add ../../Dockerrun.aws.json
-          git commit -m "update Dockerrun.aws.json image with new tag ${{steps.build_number.outputs.BUILD_NUMBER}}"
+          git commit -m "update Dockerrun.aws.json image with new tag ${{ steps.build-number.outputs.BUILD_NUMBER }}"
           git push
       - name: Send Slack Message
         run: >

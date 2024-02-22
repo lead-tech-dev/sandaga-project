@@ -3,31 +3,13 @@
   "containerDefinitions": [
     {
       "name": "sandaga-frontend",
-      "image": "cartman81/sandaga-frontend",
+      "image": "cartman81/sandaga-frontend:latest",
       "essential": true,
-      "memory": 1024,
+      "memory": 512,
       "portMappings": [
         {
           "hostPort": 80,
           "containerPort": 3000
-        }
-      ]
-    },
-    {
-      "name": "sandaga-api",
-      "image": "cartman81/sandaga-api:19.02.2024.13.21.04",
-      "essential": true,
-      "memory": 512,
-      "environment": [
-        {
-          "name": "SPRING_DATASOURCE_URL",
-          "value": "jdbc:postgresql://awseb-e-svyhmqjug6-stack-awsebrdsdatabase-dcwaeofwhnwy.cr2ie0g80l1v.eu-west-3.rds.amazonaws.com:5432/sandagadb"
-        }
-      ],
-      "portMappings": [
-        {
-          "hostPort": 8080,
-          "containerPort": 8080
         }
       ]
     }

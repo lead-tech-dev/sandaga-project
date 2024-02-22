@@ -5,7 +5,7 @@
       "name": "sandaga-frontend",
       "image": "cartman81/sandaga-frontend:22.02.2024.14.09.14",
       "essential": true,
-      "memory": 1024,
+      "memory": 1408,
       "portMappings": [
         {
           "hostPort": 80,

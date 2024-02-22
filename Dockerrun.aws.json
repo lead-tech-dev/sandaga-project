@@ -3,7 +3,7 @@
   "containerDefinitions": [
     {
       "name": "sandaga-frontend",
-      "image": "cartman81/sandaga-frontend:latest",
+      "image": "cartman81/sandaga-frontend:22.02.2024.13.33.18",
       "essential": true,
       "memory": 512,
       "portMappings": [

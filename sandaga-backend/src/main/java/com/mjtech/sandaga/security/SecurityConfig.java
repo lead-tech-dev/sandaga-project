@@ -107,7 +107,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers(SEARCH_URL).permitAll()
         .antMatchers("/api/v1/ws/**").permitAll()
         .antMatchers(HttpMethod.GET, "/actuator/**").permitAll()
-        .antMatchers("/ping").permitAll()
         .mvcMatchers(HttpMethod.POST, CATEGORIES_URL).hasAuthority(RoleEnum.ADMIN.getAuthority())
         .mvcMatchers(HttpMethod.PUT, CATEGORIES_URL).hasAuthority(RoleEnum.ADMIN.getAuthority())
         .mvcMatchers(HttpMethod.DELETE, CATEGORIES_URL).hasAuthority(RoleEnum.ADMIN.getAuthority())

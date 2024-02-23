@@ -2,8 +2,8 @@
   "AWSEBDockerrunVersion": 2,
   "containerDefinitions": [
     {
-      "name": "sandaga-frontend",
-      "image": "cartman81/sandaga-frontend:22.02.2024.14.18.37",
+      "name": "sandaga-backend",
+      "image": "cartman81/sandaga-backend:22.02.2024.14.18.37",
       "essential": true,
       "memory": 512,
       "environment": [

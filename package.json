@@ -1,1 +1,10 @@
-{}
+{
+    "scripts": {
+        "amplify-modelgen": "node amplify/scripts/amplify-modelgen.js",
+        "amplify-push": "node amplify/scripts/amplify-push.js"
+    },
+    "devDependencies": {
+        "ini": "^1.3.5",
+        "inquirer": "^6.5.1"
+    }
+}

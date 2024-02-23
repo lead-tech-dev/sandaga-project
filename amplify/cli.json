@@ -56,5 +56,6 @@
     "project": {
       "overrides": true
     }
-  }
+  },
+  "debug": {}
 }

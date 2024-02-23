@@ -1,0 +1,15 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-sandagaproject-staging-150318-authRole",
+      "UnauthRoleArn": "arn:aws:iam::533267385990:role/amplify-sandagaproject-staging-150318-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::533267385990:role/amplify-sandagaproject-staging-150318-authRole",
+      "Region": "eu-west-3",
+      "DeploymentBucketName": "amplify-sandagaproject-staging-150318-deployment",
+      "UnauthRoleName": "amplify-sandagaproject-staging-150318-unauthRole",
+      "StackName": "amplify-sandagaproject-staging-150318",
+      "StackId": "arn:aws:cloudformation:eu-west-3:533267385990:stack/amplify-sandagaproject-staging-150318/addbee40-d25c-11ee-9565-06abfc978077",
+      "AmplifyAppId": "d3nbet2ycdmmzk"
+    }
+  }
+}

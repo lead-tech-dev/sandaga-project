@@ -1,4 +1,4 @@
-FROM node:19-alpine
+FROM node:16-alpine
 ARG api_base_url
 WORKDIR /app
 COPY package*.json .

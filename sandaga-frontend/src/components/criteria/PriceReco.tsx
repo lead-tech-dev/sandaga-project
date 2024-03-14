@@ -29,11 +29,11 @@ const PriceReco: FunctionComponent<PriceRecoProps> = ({
   className,
   annonceData,
 }) => {
-  return !annonceData === true ? (
+  return !annonceData ? (
     <div
       className={`${className}`}
       style={{
-        color: `${annonceData === true ? "grey" : ""}`,
+        color: `${annonceData ? "grey" : ""}`,
       }}
     >
       <div className="form-group ">

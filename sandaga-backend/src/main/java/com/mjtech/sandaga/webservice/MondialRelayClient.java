@@ -16,7 +16,7 @@ public class MondialRelayClient extends WebServiceGatewaySupport {
 
 
         return (WSI4PointRelaisRechercheResponse) getWebServiceTemplate()
-                .marshalSendAndReceive("http://www.mondialrelay.fr/webservice/Web_Services.asmx?WSDL", parameters,
+                .marshalSendAndReceive("https://api.mondialrelay.com/Web_Services.asmx?WSDL", parameters,
                         new SoapActionCallback(
                                 "http://www.mondialrelay.fr/webservice/WSI4_PointRelais_Recherche"));
     }
@@ -25,7 +25,7 @@ public class MondialRelayClient extends WebServiceGatewaySupport {
         log.info("Requesting location for " + new Gson().toJson(parameters));
 
         return (WSI2CreationEtiquetteResponse) getWebServiceTemplate()
-                .marshalSendAndReceive("http://www.mondialrelay.fr/webservice/Web_Services.asmx?WSDL", parameters,
+                .marshalSendAndReceive("https://api.mondialrelay.com/Web_Services.asmx?WSDL", parameters,
                         new SoapActionCallback(
                                 "http://www.mondialrelay.fr/webservice/WSI2_CreationEtiquette"));
     }
@@ -35,7 +35,7 @@ public class MondialRelayClient extends WebServiceGatewaySupport {
         log.info("Requesting location for " + new Gson().toJson(parameters));
 
         return (WSI3GetEtiquettesResponse) getWebServiceTemplate()
-                .marshalSendAndReceive("http://www.mondialrelay.fr/webservice/Web_Services.asmx?WSDL", parameters,
+                .marshalSendAndReceive("https://api.mondialrelay.com/Web_Services.asmx?WSDL", parameters,
                         new SoapActionCallback(
                                 "http://www.mondialrelay.fr/webservice/WSI3_GetEtiquettes"));
     }
@@ -45,7 +45,7 @@ public class MondialRelayClient extends WebServiceGatewaySupport {
         log.info("Requesting location for " + new Gson().toJson(parameters));
 
         return (WSI2STATLabelResponse) getWebServiceTemplate()
-                .marshalSendAndReceive("http://www.mondialrelay.fr/webservice/Web_Services.asmx?WSDL", parameters,
+                .marshalSendAndReceive("https://api.mondialrelay.com/Web_Services.asmx?WSDL", parameters,
                         new SoapActionCallback(
                                 "http://www.mondialrelay.fr/webservice/WSI2_STAT_Label"));
     }
@@ -55,7 +55,7 @@ public class MondialRelayClient extends WebServiceGatewaySupport {
         log.info("Requesting location for " + new Gson().toJson(parameters));
 
         return (WSI2TracingColisDetailleResponse) getWebServiceTemplate()
-                .marshalSendAndReceive("http://www.mondialrelay.fr/webservice/Web_Services.asmx?WSDL", parameters,
+                .marshalSendAndReceive("https://api.mondialrelay.com/Web_Services.asmx?WSDL", parameters,
                         new SoapActionCallback(
                                 "http://www.mondialrelay.fr/webservice/WSI2_TracingColisDetaille"));
     }

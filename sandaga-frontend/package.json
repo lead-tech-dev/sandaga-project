@@ -13,7 +13,7 @@
         "@types/node": "^16.18.39",
         "@types/react": "^18.2.16",
         "@types/react-dom": "^18.2.7",
-        "aws-amplify": "^6.0.17",
+        "aws-amplify": "^6.0.20",
         "bootstrap": "^5.3.1",
         "classnames": "^2.3.2",
         "flag-icons": "^6.9.1",
@@ -82,19 +82,22 @@
         "transformIgnorePatterns": []
     },
     "devDependencies": {
-        "@aws-amplify/backend-cli": "^0.11.1",
+        "@aws-amplify/backend": "^0.13.0-beta.5",
+        "@aws-amplify/backend-cli": "^0.12.0-beta.5",
         "@testing-library/user-event": "^12.8.3",
         "@types/mapbox__mapbox-gl-geocoder": "^4.7.4",
         "@types/react-breadcrumbs-dynamic": "^1.0.4",
         "@types/stompjs": "^2.3.8",
-        "aws-cdk": "^2.130.0",
-        "aws-cdk-lib": "^2.130.0",
+        "aws-cdk": "^2.132.1",
+        "aws-cdk-lib": "^2.132.1",
         "babel-jest": "^21.2.0",
         "constructs": "^10.3.0",
+        "esbuild": "^0.20.1",
         "ini": "^1.3.5",
         "inquirer": "^6.5.1",
         "msw": "^0.27.1",
         "redux-devtools-extension": "^2.13.9",
-        "typescript": "^5.3.3"
+        "tsx": "^4.7.1",
+        "typescript": "^5.4.2"
     }
 }
